@@ -10,6 +10,7 @@
 #import "CCPMTask.h"
 #import "MyTableViewController_1.h"
 #import "ViewController.h"
+#import "Parse/parse.h"
 
 @interface AppDelegate ()
 
@@ -27,7 +28,71 @@
     //ViewController *viewController = [navigationController viewControllers][0];
     
     //tableViewController._ccpmTaskList = _ccpmTaskList;
+    [Parse setApplicationId:@"V09dXwlGkXaND5FcHF3PuYk4ItRmyK8ZU08MzAoY"
+                  clientKey:@"NDqB5qz2T7uomsl2xhMwwPrNVh6P7cBwceSBRWd5"];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        /*
+        NSMutableSet *categories = [NSMutableSet set];
+        UIMutableUserNotificationCategory *category = [[UIMutableUserNotificationCategory alloc] init];
+        category.identifier = @"identifier";
+        UIMutableUserNotificationAction *action = [[UIMutableUserNotificationAction alloc] init];
+        action.identifier = @"test2";
+        action.title = @"test";
+        action.activationMode = UIUserNotificationActivationModeBackground;
+        action.authenticationRequired = YES;
+        //YES显示为红色，NO显示为蓝色
+        action.destructive = NO;
+        NSArray *actions = @[ action ];
+        [category setActions:actions forContext:UIUserNotificationActionContextMinimal];
+        [categories addObject:category];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:categories]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+         */
+        
+        // Register for Push Notitications
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert |
+                                                        UIUserNotificationTypeBadge |
+                                                        UIUserNotificationTypeSound);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+
+    }else
+    {
+        /*这里是8.0之前的代码
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+         */
+    }
+
     return YES;
+}
+
+/* Called when your app has been activated by the user selecting an action from
+   a remote notification.
+   A nil action identifier indicates the default action.
+   You should call the completion handler as soon as you've finished handling
+   the action.
+ */
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo
+  completionHandler:(void (^)())completionHandler {
+}
+
+-(void)application:(UIApplication *)application didRegisterUserNotificationSettings:(nonnull UIUserNotificationSettings *)notificationSettings{
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
