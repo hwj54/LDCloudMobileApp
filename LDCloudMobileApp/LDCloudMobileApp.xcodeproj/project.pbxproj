@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D11C9641BD1F0F600923865 /* ScanResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C9631BD1F0F600923865 /* ScanResultTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		1D11C9671BD2206900923865 /* CCPMScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C9661BD2206900923865 /* CCPMScheduleTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		1D11C96A1BD2209800923865 /* CCPMScheduleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C9691BD2209800923865 /* CCPMScheduleTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		1D11C96D1BD2232000923865 /* ScheduleNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C96C1BD2232000923865 /* ScheduleNode.m */; settings = {ASSET_TAGS = (); }; };
+		1D11C9641BD1F0F600923865 /* ScanResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C9631BD1F0F600923865 /* ScanResultTableViewController.m */; };
+		1D11C9671BD2206900923865 /* CCPMScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C9661BD2206900923865 /* CCPMScheduleTableViewController.m */; };
+		1D11C96A1BD2209800923865 /* CCPMScheduleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C9691BD2209800923865 /* CCPMScheduleTableViewCell.m */; };
+		1D11C96D1BD2232000923865 /* ScheduleNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C96C1BD2232000923865 /* ScheduleNode.m */; };
 		1D9D435A1BD6A3B200868D01 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D43591BD6A3B200868D01 /* AudioToolbox.framework */; };
 		1D9D435C1BD6A3BA00868D01 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D435B1BD6A3BA00868D01 /* CFNetwork.framework */; };
 		1D9D435E1BD6A3C600868D01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D435D1BD6A3C600868D01 /* CoreGraphics.framework */; };
@@ -23,8 +23,8 @@
 		1D9D436C1BD6A45400868D01 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D436B1BD6A45400868D01 /* libsqlite3.tbd */; };
 		1D9D436E1BD6A46500868D01 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D436D1BD6A46500868D01 /* Accounts.framework */; };
 		1D9D43701BD6A47100868D01 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D436F1BD6A47100868D01 /* Social.framework */; };
-		1D9D43811BD6A61E00868D01 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D43801BD6A61E00868D01 /* Parse.framework */; settings = {ASSET_TAGS = (); }; };
-		1D9D43831BD6A62600868D01 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D43821BD6A62600868D01 /* Bolts.framework */; settings = {ASSET_TAGS = (); }; };
+		1D9D43811BD6A61E00868D01 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D43801BD6A61E00868D01 /* Parse.framework */; };
+		1D9D43831BD6A62600868D01 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D43821BD6A62600868D01 /* Bolts.framework */; };
 		1DC4D6571BD0CF190062EAA1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DC4D6561BD0CF190062EAA1 /* AVFoundation.framework */; };
 		1DD2F9401BCF7C4600481311 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD2F93F1BCF7C4600481311 /* main.m */; };
 		1DD2F9431BCF7C4600481311 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD2F9421BCF7C4600481311 /* AppDelegate.m */; };
@@ -32,13 +32,13 @@
 		1DD2F9491BCF7C4600481311 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD2F9471BCF7C4600481311 /* Main.storyboard */; };
 		1DD2F94B1BCF7C4600481311 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DD2F94A1BCF7C4600481311 /* Assets.xcassets */; };
 		1DD2F94E1BCF7C4600481311 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD2F94C1BCF7C4600481311 /* LaunchScreen.storyboard */; };
-		1DD2F9571BCFA61600481311 /* MyTableViewController_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD2F9561BCFA61600481311 /* MyTableViewController_1.m */; settings = {ASSET_TAGS = (); }; };
-		1DD2F95A1BCFAB6B00481311 /* CCPMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD2F9591BCFAB6B00481311 /* CCPMTask.m */; settings = {ASSET_TAGS = (); }; };
-		1DD2F95C1BCFDE1300481311 /* Mate_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD2F95B1BCFDE1300481311 /* Mate_1.jpg */; settings = {ASSET_TAGS = (); }; };
-		1DD2F9631BCFEC4900481311 /* MyTableViewCell_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD2F9611BCFEC4900481311 /* MyTableViewCell_1.m */; settings = {ASSET_TAGS = (); }; };
-		1DE496811BD1183C007EC73F /* ViewPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE496801BD1183C007EC73F /* ViewPreviewController.m */; settings = {ASSET_TAGS = (); }; };
-		1DE496831BD12652007EC73F /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1DE496821BD12652007EC73F /* beep.mp3 */; settings = {ASSET_TAGS = (); }; };
-		1DFCC6C11BD0969400D51C6D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFCC6C01BD0969400D51C6D /* User.m */; settings = {ASSET_TAGS = (); }; };
+		1DD2F9571BCFA61600481311 /* MyTableViewController_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD2F9561BCFA61600481311 /* MyTableViewController_1.m */; };
+		1DD2F95A1BCFAB6B00481311 /* CCPMTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD2F9591BCFAB6B00481311 /* CCPMTask.m */; };
+		1DD2F95C1BCFDE1300481311 /* Mate_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1DD2F95B1BCFDE1300481311 /* Mate_1.jpg */; };
+		1DD2F9631BCFEC4900481311 /* MyTableViewCell_1.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DD2F9611BCFEC4900481311 /* MyTableViewCell_1.m */; };
+		1DE496811BD1183C007EC73F /* ViewPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE496801BD1183C007EC73F /* ViewPreviewController.m */; };
+		1DE496831BD12652007EC73F /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1DE496821BD12652007EC73F /* beep.mp3 */; };
+		1DFCC6C11BD0969400D51C6D /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFCC6C01BD0969400D51C6D /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */

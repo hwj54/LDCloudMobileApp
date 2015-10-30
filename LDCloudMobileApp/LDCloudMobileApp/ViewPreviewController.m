@@ -125,7 +125,13 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     ScanResultTableViewController *target = segue.destinationViewController;
     //if([target respondsToSelector:@selector(setObject:forKey:)]){
+    //NSRange substr = [_lblStatus.text rangeOfString:@"#"];
+    //NSLog(@"%li",substr.location);
+    //if(substr.location != NSNotFound){
+    //[target setValue:[_lblStatus.text substringToIndex:substr.location] forKey:@"QRCode"];
+    //}else{
     [target setValue:_lblStatus.text forKey:@"QRCode"];
+    //}
     [target setValue:user forKey:@"user"];
     //}
 }

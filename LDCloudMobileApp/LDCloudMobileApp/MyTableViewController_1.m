@@ -23,6 +23,7 @@
     NSString *clickType;
     NSString *ScheduleID;
     NSInteger *selectIndex;
+    NSString *operationMode;
 }
 
 @end
@@ -250,8 +251,11 @@
         _receivedData = [[NSMutableArray alloc]init];
     }else{
         [_receivedData addObject:string];
+        if([operationMode isEqualToString:@"取消"] || [operationMode isEqualToString:@"关闭"]){
         if([string isEqualToString:@"Y"]){
+            //NSLog(@"recordResults:%@",string);
             [_ccpmTaskList removeObjectAtIndex:selectIndex];
+        }
         }
     }
     
@@ -360,23 +364,19 @@
     }
     if (buttonIndex == 1){
         NSLog(@"取消关注!");
-        
+        operationMode = @"取消";
         [self callUpdateTaskWebService:@"取消"];
-        
-        //[_ccpmTaskList removeObjectAtIndex:selectIndex];
         [self.tableView reloadData];
     }
     if (buttonIndex == 2){
         NSLog(@"关闭任务!");
-        
+        operationMode = @"关闭";
         [self callUpdateTaskWebService:@"关闭"];
-        
-        //[_ccpmTaskList removeObjectAtIndex:selectIndex];
         [self.tableView reloadData];
     }
     if (buttonIndex == 3) {
         // do stuff
-        NSLog(@"Yes!");
+        //NSLog(@"Yes!");
         clickType = @"gotoScheduleDetail";
         [self performSegueWithIdentifier:@"gotoScheduleDetail1" sender:self];
         clickType = @"";
