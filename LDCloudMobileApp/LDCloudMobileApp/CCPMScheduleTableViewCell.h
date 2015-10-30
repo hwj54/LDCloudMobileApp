@@ -12,5 +12,6 @@
 @interface CCPMScheduleTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *ScheduleNode;
 @property (nonatomic,strong) ScheduleNode * node;
+@property (nonatomic,strong) NSString *times;
 
 @end

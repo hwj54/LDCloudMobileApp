@@ -15,4 +15,5 @@
 @property (nonatomic,strong) NSString *PlanDate;
 @property (nonatomic,strong) NSString *ScheduleID;
 @property (nonatomic,strong) NSString *ProcessNum;
+@property (nonatomic,strong) NSString *Status;
 @end

@@ -150,6 +150,7 @@
         node.NodeState = [_receivedData objectAtIndex:4];
         node.ScheduleID = [_receivedData objectAtIndex:5];
         node.ProcessNum = [_receivedData objectAtIndex:6];
+        node.Status = [_receivedData objectAtIndex:7];
         [_ccpmScheduleNodeList addObject:node];
         _receivedData = [[NSMutableArray alloc]init];
     }else{
@@ -214,7 +215,11 @@
     
     ScheduleNode *nodeItem = _ccpmScheduleNodeList[indexPath.row];
     cell.node = nodeItem;
-    cell.ScheduleNode.text = nodeItem.NodeName;
+    NSMutableString *nodeText = [[NSMutableString alloc]init];
+    [nodeText appendString:nodeItem.NodeName];
+    [nodeText appendString:@"/"];
+    [nodeText appendString:nodeItem.PlanDate];
+    cell.ScheduleNode.text = nodeText;
     
     if([nodeItem.NodeState isEqualToString:@"Y"]){
         cell.ScheduleNode.backgroundColor = [UIColor greenColor];
