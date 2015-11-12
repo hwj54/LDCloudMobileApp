@@ -36,19 +36,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WorkOrder#1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Mbm-hV-myy">
-                                <rect key="frame" x="8" y="64" width="150" height="150"/>
+                                <rect key="frame" x="8" y="69" width="150" height="150"/>
                                 <animations/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WorkOrder#2.png" translatesAutoresizingMaskIntoConstraints="NO" id="Exf-Co-1ey">
-                                <rect key="frame" x="161" y="64" width="150" height="150"/>
+                                <rect key="frame" x="161" y="69" width="150" height="150"/>
                                 <animations/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WorkOrder#4.png" translatesAutoresizingMaskIntoConstraints="NO" id="7Y4-73-EMo">
-                                <rect key="frame" x="161" y="220" width="150" height="150"/>
+                                <rect key="frame" x="161" y="222" width="150" height="150"/>
                                 <animations/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WorkOrder#3.png" translatesAutoresizingMaskIntoConstraints="NO" id="uA9-Ph-OYK">
-                                <rect key="frame" x="8" y="220" width="150" height="150"/>
+                                <rect key="frame" x="8" y="222" width="150" height="150"/>
                                 <animations/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="WorkerA" translatesAutoresizingMaskIntoConstraints="NO" id="oBx-uV-DXA" customClass="WorkerUIView">
