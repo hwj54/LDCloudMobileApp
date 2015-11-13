@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -16,14 +17,14 @@
                         <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="qVx-I3-hNX"/>
+                        <segue destination="g5M-li-wSp" kind="relationship" relationship="rootViewController" id="U9U-01-E8g"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emO-mv-kVQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-743" y="129"/>
         </scene>
-        <!--View Controller-->
+        <!--厂长-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -367,7 +368,12 @@
                         <animations/>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5l1-ub-atd"/>
+                    <navigationItem key="navigationItem" title="厂长" id="cW9-H0-jus">
+                        <rightBarButtonItems>
+                            <barButtonItem title="时钟+" id="igi-Rf-g2b"/>
+                            <barButtonItem title="同步" id="yd6-GD-qVj"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="Product_1" destination="Mbm-hV-myy" id="jTQ-wy-JpY"/>
@@ -382,7 +388,275 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-323" y="129"/>
+            <point key="canvasLocation" x="1502" y="-49"/>
+        </scene>
+        <!--角色选择-->
+        <scene sceneID="EMb-lr-gLo">
+            <objects>
+                <viewController id="A6b-T2-1y2" customClass="ChoiceRoleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zrX-lA-7uu"/>
+                        <viewControllerLayoutGuide type="bottom" id="hRH-Uq-eVi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g5f-Vs-5Lb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="boss.png" translatesAutoresizingMaskIntoConstraints="NO" id="qHe-9O-pd0">
+                                <rect key="frame" x="20" y="72" width="80" height="80"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="workerA.png" translatesAutoresizingMaskIntoConstraints="NO" id="4GD-px-o8T">
+                                <rect key="frame" x="120" y="72" width="80" height="80"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="workerB.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZuI-XF-NP3">
+                                <rect key="frame" x="220" y="72" width="80" height="80"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="workerD.png" translatesAutoresizingMaskIntoConstraints="NO" id="qdy-Nz-JJ9">
+                                <rect key="frame" x="170" y="168" width="80" height="80"/>
+                                <animations/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="workerC.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Vm-Gy-yxb">
+                                <rect key="frame" x="70" y="168" width="80" height="80"/>
+                                <animations/>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="角色选择" id="u6b-cA-3Ut"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="boss" destination="qHe-9O-pd0" id="BJG-Cv-gOV"/>
+                        <outlet property="workA" destination="4GD-px-o8T" id="JVC-WJ-9wh"/>
+                        <outlet property="workerB" destination="ZuI-XF-NP3" id="KTA-3e-Ugk"/>
+                        <outlet property="workerC" destination="0Vm-Gy-yxb" id="FfF-cu-KGJ"/>
+                        <outlet property="workerD" destination="qdy-Nz-JJ9" id="iIH-LC-FnD"/>
+                        <segue destination="BYZ-38-t0r" kind="show" id="6xS-ya-rE5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uOk-4Y-myg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1061" y="395"/>
+        </scene>
+        <!--JobShop-->
+        <scene sceneID="ATd-3h-p6T">
+            <objects>
+                <viewController id="g5M-li-wSp" customClass="JobShopViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TRv-6e-Hcn"/>
+                        <viewControllerLayoutGuide type="bottom" id="but-5m-epm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S9I-fl-Fiy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="createRoomBtn" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Quf-Q9-6zy">
+                                <rect key="frame" x="122" y="171" width="77" height="30"/>
+                                <animations/>
+                                <state key="normal" title="创建教室"/>
+                                <connections>
+                                    <action selector="createRoomBtn:" destination="g5M-li-wSp" eventType="touchUpInside" id="MfT-oU-ukh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="choiceRoomBtn" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPj-nz-1nO">
+                                <rect key="frame" x="130" y="285" width="61" height="30"/>
+                                <animations/>
+                                <state key="normal" title="选择教室"/>
+                                <connections>
+                                    <action selector="choiceRoomBtn:" destination="g5M-li-wSp" eventType="touchUpInside" id="C61-bk-lDD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                    </view>
+                    <navigationItem key="navigationItem" title="JobShop" id="8if-JG-ybO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="choiceRoomBtn" destination="BPj-nz-1nO" id="VTm-Px-eeK"/>
+                        <outlet property="createRoomBtn" destination="Quf-Q9-6zy" id="3WN-LE-2U8"/>
+                        <segue destination="AWT-FA-kvr" kind="show" identifier="createRoom" id="lJn-ER-Xg8"/>
+                        <segue destination="oY4-iq-xNT" kind="show" identifier="choiceRoom" id="8Dv-cI-HNz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I0B-F9-OdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-307" y="129"/>
+        </scene>
+        <!--可选教室-->
+        <scene sceneID="qoK-3u-TGL">
+            <objects>
+                <tableViewController id="oY4-iq-xNT" customClass="ClassRoomTableView" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" id="kos-Dp-KRI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="64" id="Cl4-bf-jVI" customClass="ClassRoomTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="320" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cl4-bf-jVI" id="NBD-8m-Doi">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="classroom.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kx7-tH-Hnw">
+                                            <rect key="frame" x="8" y="0.0" width="60" height="60"/>
+                                            <animations/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TD-3t-XHm">
+                                            <rect key="frame" x="76" y="21" width="236" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="image" destination="NBD-8m-Doi" id="Jp8-z0-tUI"/>
+                                    <outlet property="roomLabel" destination="0TD-3t-XHm" id="ozy-oF-jTf"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="oY4-iq-xNT" id="vqB-4K-0Pp"/>
+                            <outlet property="delegate" destination="oY4-iq-xNT" id="Mkf-zE-d8y"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="可选教室" id="Fut-Iz-Vwq"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="kVW-G4-628" kind="show" identifier="getTable" id="tRe-TF-Imc"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FWo-kH-Mym" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122" y="402"/>
+        </scene>
+        <!--可选课桌-->
+        <scene sceneID="IgN-01-4IS">
+            <objects>
+                <tableViewController id="kVW-G4-628" customClass="RoomTableView" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="73" sectionHeaderHeight="28" sectionFooterHeight="28" id="h7W-Wa-yzC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Mmf-FF-qg7" customClass="RoomTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="320" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mmf-FF-qg7" id="T1j-re-CK6">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="table.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Ye-4Q-t0z">
+                                            <rect key="frame" x="8" y="0.0" width="60" height="60"/>
+                                            <animations/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToF-L5-5IX">
+                                            <rect key="frame" x="76" y="19" width="236" height="21"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                                <connections>
+                                    <outlet property="image" destination="8Ye-4Q-t0z" id="DBs-x4-svT"/>
+                                    <outlet property="tableNo" destination="ToF-L5-5IX" id="yhZ-iq-6t2"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="kVW-G4-628" id="LMp-Mc-5OP"/>
+                            <outlet property="delegate" destination="kVW-G4-628" id="snb-1A-0cE"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="可选课桌" id="Nrq-Vf-Bg7"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="A6b-T2-1y2" kind="show" identifier="gotoChoiceRole" id="YHJ-MN-4Pl"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UdY-CG-2T5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="631" y="395"/>
+        </scene>
+        <!--创建教室-->
+        <scene sceneID="yHh-bE-T49">
+            <objects>
+                <viewController id="AWT-FA-kvr" customClass="CreateClassRoomView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Uzh-JB-Kxz"/>
+                        <viewControllerLayoutGuide type="bottom" id="fXt-YA-118"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rQg-1N-Qq9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IqR-dE-O53">
+                                <rect key="frame" x="70" y="110" width="181" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ilt-qR-Fbp">
+                                <rect key="frame" x="70" y="184" width="181" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ttx-2G-zft">
+                                <rect key="frame" x="126" y="243" width="68" height="30"/>
+                                <animations/>
+                                <state key="normal" title="创建"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wbh-gc-g45">
+                                <rect key="frame" x="39" y="289" width="242" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="教室命名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zu-Ig-E4o">
+                                <rect key="frame" x="120" y="81" width="80" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="课桌数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z7H-Rd-oRA">
+                                <rect key="frame" x="133" y="155" width="55" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="创建教室" id="O2j-76-3bk"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="classRoom" destination="IqR-dE-O53" id="paW-lq-eFu"/>
+                        <outlet property="createButton" destination="ttx-2G-zft" id="02G-Ld-9Fe"/>
+                        <outlet property="message" destination="Wbh-gc-g45" id="kHq-AA-bOC"/>
+                        <outlet property="tableCount" destination="Ilt-qR-Fbp" id="k4n-yO-Vtv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="osx-n5-rhL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122" y="-277"/>
         </scene>
     </scenes>
     <resources>
@@ -390,6 +664,9 @@
         <image name="WorkOrder#2.png" width="150" height="150"/>
         <image name="WorkOrder#3.png" width="150" height="150"/>
         <image name="WorkOrder#4.png" width="150" height="150"/>
+        <image name="boss.png" width="80" height="80"/>
+        <image name="classroom.png" width="60" height="60"/>
+        <image name="table.png" width="60" height="60"/>
         <image name="workerA.png" width="80" height="80"/>
         <image name="workerB.png" width="80" height="80"/>
         <image name="workerC.png" width="80" height="80"/>
