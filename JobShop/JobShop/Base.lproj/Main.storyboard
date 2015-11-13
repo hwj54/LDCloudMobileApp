@@ -402,26 +402,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="boss.png" translatesAutoresizingMaskIntoConstraints="NO" id="qHe-9O-pd0">
-                                <rect key="frame" x="20" y="72" width="80" height="80"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpm-ww-NJn">
+                                <rect key="frame" x="54" y="168" width="80" height="80"/>
                                 <animations/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="workerA.png" translatesAutoresizingMaskIntoConstraints="NO" id="4GD-px-o8T">
-                                <rect key="frame" x="120" y="72" width="80" height="80"/>
+                                <state key="normal" title="Button" image="workerA.png"/>
+                                <connections>
+                                    <action selector="workerA:" destination="A6b-T2-1y2" eventType="touchUpInside" id="h5y-0M-a2Z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1h-JA-z8D">
+                                <rect key="frame" x="185" y="168" width="80" height="80"/>
                                 <animations/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="workerB.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZuI-XF-NP3">
-                                <rect key="frame" x="220" y="72" width="80" height="80"/>
+                                <state key="normal" title="Button" image="workerB.png"/>
+                                <connections>
+                                    <action selector="workerB:" destination="A6b-T2-1y2" eventType="touchUpInside" id="MmX-60-Sv9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8vg-UJ-rYm">
+                                <rect key="frame" x="54" y="262" width="80" height="80"/>
                                 <animations/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="workerD.png" translatesAutoresizingMaskIntoConstraints="NO" id="qdy-Nz-JJ9">
-                                <rect key="frame" x="170" y="168" width="80" height="80"/>
+                                <state key="normal" title="Button" image="workerC.png"/>
+                                <connections>
+                                    <action selector="workerC:" destination="A6b-T2-1y2" eventType="touchUpInside" id="2hU-Wg-h9C"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BrU-rK-87e">
+                                <rect key="frame" x="185" y="262" width="80" height="80"/>
                                 <animations/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="workerC.png" translatesAutoresizingMaskIntoConstraints="NO" id="0Vm-Gy-yxb">
-                                <rect key="frame" x="70" y="168" width="80" height="80"/>
+                                <state key="normal" title="Button" image="workerD.png"/>
+                                <connections>
+                                    <action selector="workerD:" destination="A6b-T2-1y2" eventType="touchUpInside" id="er4-e5-afi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tig-ie-B9h">
+                                <rect key="frame" x="128" y="72" width="80" height="80"/>
                                 <animations/>
-                            </imageView>
+                                <state key="normal" title="Button" image="boss.png"/>
+                                <connections>
+                                    <action selector="boss:" destination="A6b-T2-1y2" eventType="touchUpInside" id="dEt-lf-rId"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -429,17 +449,53 @@
                     <navigationItem key="navigationItem" title="角色选择" id="u6b-cA-3Ut"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="boss" destination="qHe-9O-pd0" id="BJG-Cv-gOV"/>
-                        <outlet property="workA" destination="4GD-px-o8T" id="JVC-WJ-9wh"/>
-                        <outlet property="workerB" destination="ZuI-XF-NP3" id="KTA-3e-Ugk"/>
-                        <outlet property="workerC" destination="0Vm-Gy-yxb" id="FfF-cu-KGJ"/>
-                        <outlet property="workerD" destination="qdy-Nz-JJ9" id="iIH-LC-FnD"/>
-                        <segue destination="BYZ-38-t0r" kind="show" id="6xS-ya-rE5"/>
+                        <outlet property="boss" destination="Tig-ie-B9h" id="bkF-8W-FUU"/>
+                        <outlet property="workerA" destination="kpm-ww-NJn" id="C3O-9f-XU6"/>
+                        <outlet property="workerB" destination="r1h-JA-z8D" id="9wD-2l-Szs"/>
+                        <outlet property="workerC" destination="8vg-UJ-rYm" id="dwr-Ao-LQa"/>
+                        <outlet property="workerD" destination="BrU-rK-87e" id="UHM-eg-ID5"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="gotoBoss" id="oQw-qT-wuy"/>
+                        <segue destination="HiN-0T-pUq" kind="show" identifier="gotoWorker" id="80I-y0-Hkj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uOk-4Y-myg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1061" y="395"/>
+        </scene>
+        <!--工作站-->
+        <scene sceneID="kFI-sU-xyT">
+            <objects>
+                <tableViewController title="工作站" id="HiN-0T-pUq" customClass="WorkerTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="28" sectionFooterHeight="28" id="iR4-Oj-wqk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="77" id="CWy-d4-isk" customClass="WorkerTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="320" height="77"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CWy-d4-isk" id="9Cb-WH-ggS">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="76.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </tableViewCellContentView>
+                                <animations/>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HiN-0T-pUq" id="iSa-bh-XMd"/>
+                            <outlet property="delegate" destination="HiN-0T-pUq" id="6Bc-Wj-veU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="工作站" id="XUH-CU-9uC">
+                        <barButtonItem key="rightBarButtonItem" title="同步" id="9gp-cG-Ejz"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v5g-6p-8mf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1502" y="596"/>
         </scene>
         <!--JobShop-->
         <scene sceneID="ATd-3h-p6T">
@@ -548,7 +604,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="Mmf-FF-qg7" customClass="RoomTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="60" id="Mmf-FF-qg7" customClass="RoomTableViewCell">
                                 <rect key="frame" x="0.0" y="92" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mmf-FF-qg7" id="T1j-re-CK6">
@@ -559,8 +615,8 @@
                                             <rect key="frame" x="8" y="0.0" width="60" height="60"/>
                                             <animations/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToF-L5-5IX">
-                                            <rect key="frame" x="76" y="19" width="236" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMa-Oz-dwS">
+                                            <rect key="frame" x="71" y="19" width="236" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -572,7 +628,7 @@
                                 <animations/>
                                 <connections>
                                     <outlet property="image" destination="8Ye-4Q-t0z" id="DBs-x4-svT"/>
-                                    <outlet property="tableNo" destination="ToF-L5-5IX" id="yhZ-iq-6t2"/>
+                                    <outlet property="tableLabel" destination="uMa-Oz-dwS" id="y5j-gV-Yc0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

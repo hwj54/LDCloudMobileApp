@@ -7,18 +7,23 @@
 //
 
 #import "ChoiceRoleViewController.h"
+#import "ViewController.h"
+#import "WorkerTableViewController.h"
 
-@interface ChoiceRoleViewController ()
+@interface ChoiceRoleViewController (){
+    NSString *target;
+}
 
 @end
 
 @implementation ChoiceRoleViewController
-@synthesize boss;
-@synthesize workerA;
-@synthesize workerB;
-@synthesize workerC;
-@synthesize workerD;
 @synthesize userAccount;
+//@synthesize boss;
+//@synthesize workerA;
+//@synthesize workerB;
+//@synthesize workerC;
+//@synthesize workerD;
+//@synthesize userAccount;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -28,6 +33,43 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(IBAction)boss:(id)sender{
+    target = @"boss";
+    [self performSegueWithIdentifier:@"gotoBoss" sender:self];
+}
+
+-(IBAction)workerA:(id)sender{
+    target = @"工作站A";
+    [self performSegueWithIdentifier:@"gotoWorker" sender:self];
+}
+
+-(IBAction)workerB:(id)sender{
+    target = @"工作站B";
+    [self performSegueWithIdentifier:@"gotoWorker" sender:self];
+}
+
+-(IBAction)workerC:(id)sender{
+    target = @"工作站C";
+    [self performSegueWithIdentifier:@"gotoWorker" sender:self];
+}
+
+-(IBAction)workerD:(id)sender{
+    target = @"工作站D";
+    [self performSegueWithIdentifier:@"gotoWorker" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([target isEqualToString:@"boss"]){
+        ViewController *targetScene = segue.destinationViewController;
+        [targetScene setValue:userAccount forKey:@"userAccount"];
+    }else{
+        WorkerTableViewController *targetScene = segue.destinationViewController;
+        [targetScene setValue:userAccount forKey:@"userAccount"];
+        [targetScene setValue:target forKey:@"role"];
+    }
+}
+
 
 /*
 #pragma mark - Navigation

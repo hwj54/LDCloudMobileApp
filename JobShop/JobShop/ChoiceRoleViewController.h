@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UserAccount.h"
 @interface ChoiceRoleViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIImageView *boss;
-@property (strong, nonatomic) IBOutlet UIImageView *workerA;
-@property (strong, nonatomic) IBOutlet UIImageView *workerB;
-@property (strong, nonatomic) IBOutlet UIImageView *workerC;
-@property (strong, nonatomic) IBOutlet UIImageView *workerD;
+@property (strong, nonatomic) IBOutlet UIButton *boss;
+@property (strong, nonatomic) IBOutlet UIButton *workerA;
+@property (strong, nonatomic) IBOutlet UIButton *workerB;
+@property (strong, nonatomic) IBOutlet UIButton *workerC;
+@property (strong, nonatomic) IBOutlet UIButton *workerD;
 @property(nonatomic)UserAccount *userAccount;
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WorkerUIView.h"
+#import "UserAccount.h"
 @interface ViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *Product_1;
 @property (strong, nonatomic) IBOutlet UIImageView *Product_2;
@@ -22,6 +23,6 @@
 @property (nonatomic, strong) NSString *dragObject;
 @property (nonatomic, assign) CGPoint touchOffset;
 @property (nonatomic, assign) CGPoint homePosition;
-
+@property(nonatomic) UserAccount *userAccount;
 @end
 
