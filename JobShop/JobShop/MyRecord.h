@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface MyRecord : NSObject
+@property(nonatomic)NSString *recordID;
 @property(nonatomic)NSString *recordType;
 @property(nonatomic)NSString *startTime;
 @end

@@ -40,33 +40,34 @@
 }
 
 -(IBAction)workerA:(id)sender{
-    target = @"工作站A";
+    target = @"A";
     [self performSegueWithIdentifier:@"gotoWorker" sender:self];
 }
 
 -(IBAction)workerB:(id)sender{
-    target = @"工作站B";
+    target = @"B";
     [self performSegueWithIdentifier:@"gotoWorker" sender:self];
 }
 
 -(IBAction)workerC:(id)sender{
-    target = @"工作站C";
+    target = @"C";
     [self performSegueWithIdentifier:@"gotoWorker" sender:self];
 }
 
 -(IBAction)workerD:(id)sender{
-    target = @"工作站D";
+    target = @"D";
     [self performSegueWithIdentifier:@"gotoWorker" sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    userAccount.role = target;
     if([target isEqualToString:@"boss"]){
         ViewController *targetScene = segue.destinationViewController;
         [targetScene setValue:userAccount forKey:@"userAccount"];
     }else{
         WorkerTableViewController *targetScene = segue.destinationViewController;
         [targetScene setValue:userAccount forKey:@"userAccount"];
-        [targetScene setValue:target forKey:@"role"];
+        [targetScene setValue:userAccount.role forKey:@"role"];
     }
 }
 
