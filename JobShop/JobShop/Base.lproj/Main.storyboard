@@ -370,8 +370,16 @@
                     </view>
                     <navigationItem key="navigationItem" title="厂长" id="cW9-H0-jus">
                         <rightBarButtonItems>
-                            <barButtonItem title="时钟+" id="igi-Rf-g2b"/>
-                            <barButtonItem title="同步" id="yd6-GD-qVj"/>
+                            <barButtonItem title="时钟+" id="igi-Rf-g2b">
+                                <connections>
+                                    <action selector="clockPlus:" destination="BYZ-38-t0r" id="XyW-1t-0fg"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="同步" id="yd6-GD-qVj">
+                                <connections>
+                                    <action selector="synch:" destination="BYZ-38-t0r" id="ReV-2J-NTf"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="0" id="rEU-3W-6DO"/>
                         </rightBarButtonItems>
                     </navigationItem>
@@ -526,7 +534,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="工作站" id="XUH-CU-9uC">
                         <rightBarButtonItems>
-                            <barButtonItem title="同步" id="9gp-cG-Ejz"/>
+                            <barButtonItem title="同步" id="9gp-cG-Ejz">
+                                <connections>
+                                    <action selector="synch:" destination="HiN-0T-pUq" id="IB9-OQ-hbe"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="0" id="3pc-1h-xjw"/>
                         </rightBarButtonItems>
                     </navigationItem>

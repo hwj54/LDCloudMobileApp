@@ -10,6 +10,7 @@
 #import "UserAccount.h"
 #import "MyTable.h"
 @interface WorkerTableViewController : UITableViewController
+- (IBAction)synch:(id)sender;
 @property(nonatomic)UserAccount *userAccount;
 @property(nonatomic)MyTable *myTable;
 @property(nonatomic)NSString *role;

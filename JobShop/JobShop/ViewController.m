@@ -14,6 +14,7 @@
     NSMutableString *soapResults;
     NSXMLParser *xmlParser;
     NSString *response ;
+    NSString *synchClock ;
     BOOL recordResults;
     NSMutableArray *_recordList;
     NSMutableArray *_receivedData;
@@ -291,11 +292,123 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItems[2].title = myTable.clock;
-    wsOption = @"同步";
+    wsOption = @"";
     targetRole = @"";
+    synchClock = myTable.clock;
     _recordList = [[NSMutableArray alloc]init];
     _receivedData = [[NSMutableArray alloc]init];
     [self getRecordWebService];
+
+}
+
+-(void)clockSynchWebService{
+    recordResults = NO;
+    int clock = [myTable.clock intValue];
+    clock += 1;
+    NSString *newClock = [NSString stringWithFormat:@"%i",clock];
+    //封装soap请求消息
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                             "<S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<SOAP-ENV:Header/>\n"
+                             "<S:Body>\n"
+                             "<ns2:SynchTableClock xmlns:ns2=\"http://service.enterpriseApp.ld.org/\">\n"
+                             "<account>"];
+    soapMessage = [soapMessage stringByAppendingString:userAccount.account];
+    soapMessage = [soapMessage stringByAppendingString:@"</account>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"<room>"];
+    soapMessage = [soapMessage stringByAppendingString:userAccount.room];
+    soapMessage = [soapMessage stringByAppendingString:@"</room>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"<table>"];
+    soapMessage = [soapMessage stringByAppendingString:userAccount.table];
+    soapMessage = [soapMessage stringByAppendingString:@"</table>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</ns2:SynchTableClock>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Body>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Envelope>"];
+    NSLog(@"%@",soapMessage);
+    //请求发送到的路径
+    NSURL *url = [NSURL URLWithString:@"http://120.27.51.181:8080/LDJEEWebEnterpriseApp-war/JobShop?WSDL"];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
+    
+    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
+    [theRequest addValue: @"text/xml; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"http://service.enterpriseApp.ld.org/SynchTableClock"
+      forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //请求
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    //如果连接已经建好，则初始化data
+    if( theConnection )
+    {
+        webData = [[NSMutableData data]init];
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+    }
+}
+
+
+-(void)clockPlusWebService{
+    recordResults = NO;
+    int clock = [myTable.clock intValue];
+    clock += 1;
+    NSString *newClock = [NSString stringWithFormat:@"%i",clock];
+    //封装soap请求消息
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                             "<S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<SOAP-ENV:Header/>\n"
+                             "<S:Body>\n"
+                             "<ns2:updateTableSynchClock xmlns:ns2=\"http://service.enterpriseApp.ld.org/\">\n"
+                             "<account>"];
+    soapMessage = [soapMessage stringByAppendingString:userAccount.account];
+    soapMessage = [soapMessage stringByAppendingString:@"</account>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"<roomNo>"];
+    soapMessage = [soapMessage stringByAppendingString:userAccount.room];
+    soapMessage = [soapMessage stringByAppendingString:@"</roomNo>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"<table>"];
+    soapMessage = [soapMessage stringByAppendingString:userAccount.table];
+    soapMessage = [soapMessage stringByAppendingString:@"</table>\n"];
+    
+    soapMessage = [soapMessage stringByAppendingString:@"<clock>"];
+    soapMessage = [soapMessage stringByAppendingString:newClock];
+    soapMessage = [soapMessage stringByAppendingString:@"</clock>\n"];
+    
+    soapMessage = [soapMessage stringByAppendingString:@"</ns2:updateTableSynchClock>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Body>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Envelope>"];
+    NSLog(@"%@",soapMessage);
+    //请求发送到的路径
+    NSURL *url = [NSURL URLWithString:@"http://120.27.51.181:8080/LDJEEWebEnterpriseApp-war/JobShop?WSDL"];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
+    
+    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
+    [theRequest addValue: @"text/xml; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"http://service.enterpriseApp.ld.org/updateTableSynchClock"
+      forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //请求
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    //如果连接已经建好，则初始化data
+    if( theConnection )
+    {
+        webData = [[NSMutableData data]init];
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+    }
 
 }
 
@@ -456,8 +569,30 @@
             [alert show];
         }
     }else{
-        [self synchTableData];
+        if([wsOption isEqualToString:@"同步"]){
+            [self synchTableData];
+            wsOption = @"时钟同步";
+            //response = @"0";
+            [self clockSynchWebService];
+        }
+        if([wsOption isEqualToString:@"时钟加1"]){
+            if([response isEqualToString:@"Y"]){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"时钟加1操作" message:@"成功!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+                [alert show];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"时钟加1操作" message:@"失败!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+                [alert show];
+            }
+            wsOption = @"时钟同步";
+            //response = @"0";
+            [self clockSynchWebService];
+        }
+        if([wsOption isEqualToString:@"时钟同步"]){
+            //myTable.clock = synchClock;
+            self.navigationItem.rightBarButtonItems[2].title = myTable.clock;
+        }
     }
+    wsOption = @"";
 }
 
 -(void)synchTableData{
@@ -581,9 +716,14 @@
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     //NSLog(@"5 parser: foundCharacters:");
-    if([wsOption isEqualToString:@"下达"]){
+    if([wsOption isEqualToString:@"时钟同步"]){
+        synchClock = string;
+        myTable.clock = string;
+    }
+    else if([wsOption isEqualToString:@"下达"] || [wsOption isEqualToString:@"时钟加1"]){
         response = string;
-    }else{
+        //NSLog([@"response is ********" stringByAppendingString:response]);
+    }else if([wsOption isEqualToString:@"同步"]){
         BOOL isSeparator = [@"|" isEqualToString:string];
         if(isSeparator){
             record = [[MyRecord alloc]init];
@@ -615,7 +755,9 @@
     }
     
     if( [elementName isEqualToString:@"ns2:addRecordResponse"] ||
-       [elementName isEqualToString:@"ns2:updateTaskStateResponse"] )//
+       [elementName isEqualToString:@"ns2:updateTableSynchClockResponse"] ||
+       [elementName isEqualToString:@"ns2:GetTableRecordResponse"] ||
+       [elementName isEqualToString:@"ns2:SynchTableClockResponse"])//
     {
         recordResults = FALSE;
         
@@ -635,4 +777,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)synch:(id)sender {
+    wsOption = @"同步";
+    _recordList = [[NSMutableArray alloc]init];
+    [self getRecordWebService];
+}
+
+- (IBAction)clockPlus:(id)sender {
+    wsOption = @"时钟加1";
+    [self clockPlusWebService];
+}
 @end

@@ -331,4 +331,8 @@
 }
 */
 
+- (IBAction)synch:(id)sender {
+    _recordList = [[NSMutableArray alloc]init];
+    [self callWebService];
+}
 @end
