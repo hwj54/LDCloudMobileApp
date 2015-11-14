@@ -58,6 +58,7 @@
 @synthesize touchOffset;
 @synthesize homePosition;
 @synthesize userAccount;
+@synthesize myTable;
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     if ([touches count] == 1) {
@@ -289,6 +290,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItems[2].title = myTable.clock;
     wsOption = @"同步";
     targetRole = @"";
     _recordList = [[NSMutableArray alloc]init];

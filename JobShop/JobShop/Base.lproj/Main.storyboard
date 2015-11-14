@@ -372,6 +372,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="时钟+" id="igi-Rf-g2b"/>
                             <barButtonItem title="同步" id="yd6-GD-qVj"/>
+                            <barButtonItem title="0" id="rEU-3W-6DO"/>
                         </rightBarButtonItems>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -462,7 +463,9 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="角色选择" id="u6b-cA-3Ut"/>
+                    <navigationItem key="navigationItem" title="角色选择" id="u6b-cA-3Ut">
+                        <barButtonItem key="rightBarButtonItem" title="0" id="7Tj-g5-StK"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="boss" destination="Tig-ie-B9h" id="bkF-8W-FUU"/>
@@ -522,7 +525,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="工作站" id="XUH-CU-9uC">
-                        <barButtonItem key="rightBarButtonItem" title="同步" id="9gp-cG-Ejz"/>
+                        <rightBarButtonItems>
+                            <barButtonItem title="同步" id="9gp-cG-Ejz"/>
+                            <barButtonItem title="0" id="3pc-1h-xjw"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>

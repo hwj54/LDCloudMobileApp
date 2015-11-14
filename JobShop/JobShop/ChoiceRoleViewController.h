@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UserAccount.h"
+#import "MyTable.h"
 @interface ChoiceRoleViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIButton *boss;
 @property (strong, nonatomic) IBOutlet UIButton *workerA;
@@ -15,4 +16,5 @@
 @property (strong, nonatomic) IBOutlet UIButton *workerC;
 @property (strong, nonatomic) IBOutlet UIButton *workerD;
 @property(nonatomic)UserAccount *userAccount;
+@property(nonatomic)MyTable *myTable;
 @end

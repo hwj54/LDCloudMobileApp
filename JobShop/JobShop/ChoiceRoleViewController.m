@@ -18,6 +18,7 @@
 
 @implementation ChoiceRoleViewController
 @synthesize userAccount;
+@synthesize myTable;
 //@synthesize boss;
 //@synthesize workerA;
 //@synthesize workerB;
@@ -26,6 +27,7 @@
 //@synthesize userAccount;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItems[0].title = myTable.clock;
     // Do any additional setup after loading the view.
 }
 
@@ -64,9 +66,11 @@
     if([target isEqualToString:@"boss"]){
         ViewController *targetScene = segue.destinationViewController;
         [targetScene setValue:userAccount forKey:@"userAccount"];
+        [targetScene setValue:myTable forKey:@"myTable"];
     }else{
         WorkerTableViewController *targetScene = segue.destinationViewController;
         [targetScene setValue:userAccount forKey:@"userAccount"];
+        [targetScene setValue:myTable forKey:@"myTable"];
         [targetScene setValue:userAccount.role forKey:@"role"];
     }
 }

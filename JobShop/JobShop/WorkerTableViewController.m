@@ -30,10 +30,12 @@
 @implementation WorkerTableViewController
 @synthesize role;
 @synthesize userAccount;
+@synthesize myTable;
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSString *workStation = @"工作站";
     self.navigationItem.title = [workStation stringByAppendingString:role];
+    self.navigationItem.rightBarButtonItems[1].title = myTable.clock;
     _recordList = [[NSMutableArray alloc]init];
     _receivedData = [[NSMutableArray alloc]init];
     [self callWebService];

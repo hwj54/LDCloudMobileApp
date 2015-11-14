@@ -23,6 +23,7 @@
     NSInteger *selectIndex;
     NSString *operationMode;
     MyTable *table;
+    MyTable *selectTable;
 
 }
 
@@ -244,6 +245,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyTable *tableItem = _tableList[indexPath.row];
+    selectTable = tableItem;
     userAccount.table = tableItem.table;
     
     //selectIndex = indexPath.row;
@@ -262,6 +264,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     ChoiceRoleViewController *target = segue.destinationViewController;
     [target setValue:userAccount forKey:@"userAccount"];
+    [target setValue:selectTable forKey:@"myTable"];
 }
 
 /*

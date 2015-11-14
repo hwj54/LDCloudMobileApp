@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "UserAccount.h"
+#import "MyTable.h"
 @interface WorkerTableViewController : UITableViewController
 @property(nonatomic)UserAccount *userAccount;
+@property(nonatomic)MyTable *myTable;
 @property(nonatomic)NSString *role;
 @end
