@@ -13,6 +13,7 @@
 @interface ViewController : UIViewController
 - (IBAction)synch:(id)sender;
 - (IBAction)clockPlus:(id)sender;
+- (IBAction)clockReduce:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *Product_1;
 @property (strong, nonatomic) IBOutlet UIImageView *Product_2;
 @property (strong, nonatomic) IBOutlet UIImageView *Product_3;

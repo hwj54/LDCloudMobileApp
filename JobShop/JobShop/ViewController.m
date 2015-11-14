@@ -25,6 +25,7 @@
     NSString *targetRole;
     MyRecord *record;
     NSString *wsOption;
+    NSString *newClock;
 }
 
 @end
@@ -291,8 +292,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItems[2].title = myTable.clock;
-    wsOption = @"";
+    self.navigationItem.rightBarButtonItems[3].title = myTable.clock;
+    
     targetRole = @"";
     synchClock = myTable.clock;
     _recordList = [[NSMutableArray alloc]init];
@@ -303,9 +304,10 @@
 
 -(void)clockSynchWebService{
     recordResults = NO;
-    int clock = [myTable.clock intValue];
-    clock += 1;
-    NSString *newClock = [NSString stringWithFormat:@"%i",clock];
+    wsOption = @"时钟同步";
+    //int clock = [myTable.clock intValue];
+    //clock += 1;
+    //newClock = [NSString stringWithFormat:@"%i",clock];
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:
                              @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -356,9 +358,6 @@
 
 -(void)clockPlusWebService{
     recordResults = NO;
-    int clock = [myTable.clock intValue];
-    clock += 1;
-    NSString *newClock = [NSString stringWithFormat:@"%i",clock];
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:
                              @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
@@ -414,6 +413,7 @@
 
 //获取当前课桌的订单
 -(void)getRecordWebService{
+    wsOption = @"同步";
     recordResults = NO;
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:
@@ -491,7 +491,7 @@
     soapMessage = [soapMessage stringByAppendingString:@"</recordType>\n"];
     
     soapMessage = [soapMessage stringByAppendingString:@"<startTime>"];
-    soapMessage = [soapMessage stringByAppendingString:@"1"];
+    soapMessage = [soapMessage stringByAppendingString:myTable.clock];
     soapMessage = [soapMessage stringByAppendingString:@"</startTime>\n"];
     
     soapMessage = [soapMessage stringByAppendingString:@"</ns2:addRecord>\n"];
@@ -571,8 +571,6 @@
     }else{
         if([wsOption isEqualToString:@"同步"]){
             [self synchTableData];
-            wsOption = @"时钟同步";
-            //response = @"0";
             [self clockSynchWebService];
         }
         if([wsOption isEqualToString:@"时钟加1"]){
@@ -583,16 +581,14 @@
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"时钟加1操作" message:@"失败!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
                 [alert show];
             }
-            wsOption = @"时钟同步";
-            //response = @"0";
             [self clockSynchWebService];
         }
         if([wsOption isEqualToString:@"时钟同步"]){
             //myTable.clock = synchClock;
-            self.navigationItem.rightBarButtonItems[2].title = myTable.clock;
+            self.navigationItem.rightBarButtonItems[3].title = myTable.clock;
         }
     }
-    wsOption = @"";
+    //wsOption = @"";
 }
 
 -(void)synchTableData{
@@ -717,7 +713,8 @@
 {
     //NSLog(@"5 parser: foundCharacters:");
     if([wsOption isEqualToString:@"时钟同步"]){
-        synchClock = string;
+        //synchClock = string;
+        //NSLog([@"synchClock is ********" stringByAppendingString:synchClock]);
         myTable.clock = string;
     }
     else if([wsOption isEqualToString:@"下达"] || [wsOption isEqualToString:@"时钟加1"]){
@@ -785,6 +782,17 @@
 
 - (IBAction)clockPlus:(id)sender {
     wsOption = @"时钟加1";
+    int clock = [myTable.clock intValue];
+    clock += 1;
+    newClock = [NSString stringWithFormat:@"%i",clock];
+    [self clockPlusWebService];
+}
+
+- (IBAction)clockReduce:(id)sender {
+    wsOption = @"时钟加1";
+    int clock = [myTable.clock intValue];
+    clock -= 1;
+    newClock = [NSString stringWithFormat:@"%i",clock];
     [self clockPlusWebService];
 }
 @end

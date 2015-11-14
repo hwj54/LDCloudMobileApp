@@ -370,6 +370,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="厂长" id="cW9-H0-jus">
                         <rightBarButtonItems>
+                            <barButtonItem title="时钟-" id="1Sr-1S-u14">
+                                <connections>
+                                    <action selector="clockReduce:" destination="BYZ-38-t0r" id="Pdy-HP-tuz"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="时钟+" id="igi-Rf-g2b">
                                 <connections>
                                     <action selector="clockPlus:" destination="BYZ-38-t0r" id="XyW-1t-0fg"/>
