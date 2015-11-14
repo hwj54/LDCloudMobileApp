@@ -10,6 +10,7 @@
 
 @interface MyRecord : NSObject
 @property(nonatomic)NSString *recordID;
+@property(nonatomic)NSString *role;
 @property(nonatomic)NSString *recordType;
 @property(nonatomic)NSString *startTime;
 @end

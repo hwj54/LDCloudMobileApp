@@ -149,6 +149,7 @@
     if(isSeparator){
         record = [[MyRecord alloc]init];
         record.recordID = [_receivedData objectAtIndex:0];
+        record.role = userAccount.role;
         record.recordType = [_receivedData objectAtIndex:1];
         record.startTime = [_receivedData objectAtIndex:2];
         [_recordList addObject:record];

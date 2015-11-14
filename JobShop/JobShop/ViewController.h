@@ -18,6 +18,22 @@
 @property (strong, nonatomic) IBOutlet WorkerUIView *Worker_B;
 @property (strong, nonatomic) IBOutlet WorkerUIView *Worker_C;
 @property (strong, nonatomic) IBOutlet WorkerUIView *Worker_D;
+@property (strong, nonatomic) IBOutlet UILabel *A1;
+@property (strong, nonatomic) IBOutlet UILabel *A2;
+@property (strong, nonatomic) IBOutlet UILabel *A3;
+@property (strong, nonatomic) IBOutlet UILabel *A4;
+@property (strong, nonatomic) IBOutlet UILabel *B1;
+@property (strong, nonatomic) IBOutlet UILabel *B2;
+@property (strong, nonatomic) IBOutlet UILabel *B3;
+@property (strong, nonatomic) IBOutlet UILabel *B4;
+@property (strong, nonatomic) IBOutlet UILabel *C1;
+@property (strong, nonatomic) IBOutlet UILabel *C2;
+@property (strong, nonatomic) IBOutlet UILabel *C3;
+@property (strong, nonatomic) IBOutlet UILabel *C4;
+@property (strong, nonatomic) IBOutlet UILabel *D1;
+@property (strong, nonatomic) IBOutlet UILabel *D2;
+@property (strong, nonatomic) IBOutlet UILabel *D3;
+@property (strong, nonatomic) IBOutlet UILabel *D4;
 
 @property (nonatomic, strong) UIImageView *dragImage;
 @property (nonatomic, strong) NSString *dragObject;

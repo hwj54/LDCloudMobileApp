@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "MyRecord.h"
 
 @interface ViewController (){
     NSMutableData *webData;
@@ -14,13 +15,15 @@
     NSXMLParser *xmlParser;
     NSString *response ;
     BOOL recordResults;
-    //NSMutableArray *_recordList;
+    NSMutableArray *_recordList;
     NSMutableArray *_receivedData;
     NSString *clickType;
     NSString *ScheduleID;
     NSInteger *selectIndex;
     NSString *operationMode;
     NSString *targetRole;
+    MyRecord *record;
+    NSString *wsOption;
 }
 
 @end
@@ -34,6 +37,22 @@
 @synthesize Worker_B;
 @synthesize Worker_C;
 @synthesize Worker_D;
+@synthesize A1;
+@synthesize A2;
+@synthesize A3;
+@synthesize A4;
+@synthesize B1;
+@synthesize B2;
+@synthesize B3;
+@synthesize B4;
+@synthesize C1;
+@synthesize C2;
+@synthesize C3;
+@synthesize C4;
+@synthesize D1;
+@synthesize D2;
+@synthesize D3;
+@synthesize D4;
 @synthesize dragImage;
 @synthesize dragObject;
 @synthesize touchOffset;
@@ -257,6 +276,7 @@
     if([targetRole isEqualToString:@""]){
         //
     }else{
+        wsOption = @"下达";
         [self callWebService];
     }
     
@@ -269,11 +289,65 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    wsOption = @"同步";
     targetRole = @"";
+    _recordList = [[NSMutableArray alloc]init];
     _receivedData = [[NSMutableArray alloc]init];
-    //[self callWebService];
+    [self getRecordWebService];
 
 }
+
+//获取当前课桌的订单
+-(void)getRecordWebService{
+    recordResults = NO;
+    //封装soap请求消息
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                             "<S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<SOAP-ENV:Header/>\n"
+                             "<S:Body>\n"
+                             "<ns2:GetTableRecord xmlns:ns2=\"http://service.enterpriseApp.ld.org/\">\n"
+                             "<account>"];
+    soapMessage = [soapMessage stringByAppendingString:userAccount.account];
+    soapMessage = [soapMessage stringByAppendingString:@"</account>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"<room>"];
+    soapMessage = [soapMessage stringByAppendingString:userAccount.room];
+    soapMessage = [soapMessage stringByAppendingString:@"</room>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"<table>"];
+    soapMessage = [soapMessage stringByAppendingString:userAccount.table];
+    soapMessage = [soapMessage stringByAppendingString:@"</table>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</ns2:GetTableRecord>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Body>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Envelope>"];
+    NSLog(@"%@",soapMessage);
+    //请求发送到的路径
+    NSURL *url = [NSURL URLWithString:@"http://120.27.51.181:8080/LDJEEWebEnterpriseApp-war/JobShop?WSDL"];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
+    
+    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
+    [theRequest addValue: @"text/xml; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"http://service.enterpriseApp.ld.org/GetTableRecord"
+      forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //请求
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    //如果连接已经建好，则初始化data
+    if( theConnection )
+    {
+        webData = [[NSMutableData data]init];
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+    }
+    
+}
+
 
 -(void)callWebService{
     recordResults = NO;
@@ -367,16 +441,123 @@
     [xmlParser setDelegate: self];
     [xmlParser setShouldResolveExternalEntities: YES];
     [xmlParser parse];
-    if([response isEqualToString:@"Y"]){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"订单下达状态" message:@"成功!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
-        // optional - add more buttons:
-        //[alert addButtonWithTitle:@"验证"];
-        [alert show];
+    if([wsOption isEqualToString:@"下达"]){
+        if([response isEqualToString:@"Y"]){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"订单下达状态" message:@"成功!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+            // optional - add more buttons:
+            //[alert addButtonWithTitle:@"验证"];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"订单下达状态" message:@"失败!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+            // optional - add more buttons:
+            //[alert addButtonWithTitle:@"验证"];
+            [alert show];
+        }
     }else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"订单下达状态" message:@"失败!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
-        // optional - add more buttons:
-        //[alert addButtonWithTitle:@"验证"];
-        [alert show];
+        [self synchTableData];
+    }
+}
+
+-(void)synchTableData{
+    if(_recordList.count > 0){
+        int a1 = 0;
+        int a2 = 0;
+        int a3 = 0;
+        int a4 = 0;
+        
+        int b1 = 0;
+        int b2 = 0;
+        int b3 = 0;
+        int b4 = 0;
+        
+        int c1 = 0;
+        int c2 = 0;
+        int c3 = 0;
+        int c4 = 0;
+        
+        int d1 = 0;
+        int d2 = 0;
+        int d3 = 0;
+        int d4 = 0;
+        
+        for (MyRecord *object in _recordList) {
+            if([object.role isEqualToString:@"A"]){
+                if([object.recordType isEqualToString:@"#1"]){
+                    a1 += 1;
+                }
+                if([object.recordType isEqualToString:@"#2"]){
+                    a2 += 1;
+                }
+                if([object.recordType isEqualToString:@"#3"]){
+                    a3 += 1;
+                }
+                if([object.recordType isEqualToString:@"#4"]){
+                    a4 += 1;
+                }
+            }
+            if([object.role isEqualToString:@"B"]){
+                if([object.recordType isEqualToString:@"#1"]){
+                    b1 += 1;
+                }
+                if([object.recordType isEqualToString:@"#2"]){
+                    b2 += 1;
+                }
+                if([object.recordType isEqualToString:@"#3"]){
+                    b3 += 1;
+                }
+                if([object.recordType isEqualToString:@"#4"]){
+                    b4 += 1;
+                }
+            }
+            if([object.role isEqualToString:@"C"]){
+                if([object.recordType isEqualToString:@"#1"]){
+                    c1 += 1;
+                }
+                if([object.recordType isEqualToString:@"#2"]){
+                    c2 += 1;
+                }
+                if([object.recordType isEqualToString:@"#3"]){
+                    c3 += 1;
+                }
+                if([object.recordType isEqualToString:@"#4"]){
+                    c4 += 1;
+                }
+            }
+            if([object.role isEqualToString:@"D"]){
+                if([object.recordType isEqualToString:@"#1"]){
+                    d1 += 1;
+                }
+                if([object.recordType isEqualToString:@"#2"]){
+                    d2 += 1;
+                }
+                if([object.recordType isEqualToString:@"#3"]){
+                    d3 += 1;
+                }
+                if([object.recordType isEqualToString:@"#4"]){
+                    d4 += 1;
+                }
+            }
+        }
+        
+        A1.text = [NSString stringWithFormat:@"%i",a1];
+        A2.text = [NSString stringWithFormat:@"%i",a2];
+        A3.text = [NSString stringWithFormat:@"%i",a3];
+        A4.text = [NSString stringWithFormat:@"%i",a4];
+        
+        B1.text = [NSString stringWithFormat:@"%i",b1];
+        B2.text = [NSString stringWithFormat:@"%i",b2];
+        B3.text = [NSString stringWithFormat:@"%i",b3];
+        B4.text = [NSString stringWithFormat:@"%i",b4];
+        
+        C1.text = [NSString stringWithFormat:@"%i",c1];
+        C2.text = [NSString stringWithFormat:@"%i",c2];
+        C3.text = [NSString stringWithFormat:@"%i",c3];
+        C4.text = [NSString stringWithFormat:@"%i",c4];
+        
+        D1.text = [NSString stringWithFormat:@"%i",d1];
+        D2.text = [NSString stringWithFormat:@"%i",d2];
+        D3.text = [NSString stringWithFormat:@"%i",d3];
+        D4.text = [NSString stringWithFormat:@"%i",d4];
     }
 }
 
@@ -398,7 +579,22 @@
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
     //NSLog(@"5 parser: foundCharacters:");
-    response = string;
+    if([wsOption isEqualToString:@"下达"]){
+        response = string;
+    }else{
+        BOOL isSeparator = [@"|" isEqualToString:string];
+        if(isSeparator){
+            record = [[MyRecord alloc]init];
+            record.recordID = [_receivedData objectAtIndex:0];
+            record.role = [_receivedData objectAtIndex:1];
+            record.recordType = [_receivedData objectAtIndex:2];
+            record.startTime = [_receivedData objectAtIndex:3];
+            [_recordList addObject:record];
+            _receivedData = [[NSMutableArray alloc]init];
+        }else{
+            [_receivedData addObject:string];
+        }
+    }
     if( recordResults )
     {
         [soapResults appendString: string];
