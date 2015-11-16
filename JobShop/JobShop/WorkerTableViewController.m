@@ -177,6 +177,10 @@
     soapMessage = [soapMessage stringByAppendingString:myTable.clock];
     soapMessage = [soapMessage stringByAppendingString:@"</reportTime>\n"];
     
+    soapMessage = [soapMessage stringByAppendingString:@"<process>"];
+    soapMessage = [soapMessage stringByAppendingString:role];
+    soapMessage = [soapMessage stringByAppendingString:@"</process>\n"];
+    
     soapMessage = [soapMessage stringByAppendingString:@"</ns2:updateRecordReport>\n"];
     soapMessage = [soapMessage stringByAppendingString:@"</S:Body>\n"];
     soapMessage = [soapMessage stringByAppendingString:@"</S:Envelope>"];
@@ -447,6 +451,7 @@
             [wsOption isEqualToString:@"传递"] || [wsOption isEqualToString:@"作废"] ||
             [wsOption isEqualToString:@"恢复"]){
         if([response isEqualToString:@"Y"]){
+            [self callWebService];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"操作成功!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
             [alert show];
         }else{
@@ -506,7 +511,7 @@
     else if ([wsOption isEqualToString:@"报工"] || [wsOption isEqualToString:@"完结"] ||[wsOption isEqualToString:@"传递"] || [wsOption isEqualToString:@"作废"] ||
              [wsOption isEqualToString:@"恢复"]){
         response = string;
-        NSLog([@"*******webservice's response is " stringByAppendingString:response]);
+        //NSLog([@"*******webservice's response is " stringByAppendingString:response]);
     }
     //response = [response stringByAppendingString:string];
     if( recordResults )

@@ -83,7 +83,6 @@
             target = @"";
         }
     }
-    
 }
 
 -(void)accountLogin{

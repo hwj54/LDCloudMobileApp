@@ -13,6 +13,7 @@
     NSMutableString *soapResults;
     NSXMLParser *xmlParser;
     NSString *response ;
+    NSString *response2 ;
     BOOL recordResults;
     NSString *wsOption;
 }
@@ -26,12 +27,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     response = [[NSString alloc]init];
+    response2 = [[NSString alloc]init];
     wsOption = @"";
     // Do any additional setup after loading the view.
 }
 
 -(void)creatRoomWebService{
     wsOption = @"创建教室";
+    response = @"N";
     recordResults = NO;
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:
@@ -80,6 +83,7 @@
 
 -(void)creatRoomTableWebService{
     wsOption = @"创建课桌";
+    response2 = @"N";
     recordResults = NO;
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:
@@ -163,12 +167,11 @@
     if([wsOption isEqualToString:@"创建教室"] && [response isEqualToString:@"Y"]){
         [self creatRoomTableWebService];
     }
-    if([wsOption isEqualToString:@"创建课桌"] && [response isEqualToString:@"Y"]){
+    if([wsOption isEqualToString:@"创建课桌"]){
+        if([response2 isEqualToString:@"Y"]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"教室创建成功!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
         [alert show];
-    }else{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"教室创建失败!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
-        [alert show];
+        }
     }
 }
 
@@ -191,7 +194,11 @@
 {
     //NSLog(@"5 parser: foundCharacters:");
     //NSLog(@"recordResults:%@",string);
+    if([wsOption isEqualToString:@"创建教室"]){
     response = string;
+    }else if([wsOption isEqualToString:@"创建课桌"]){
+        response2 = string;
+    }
     //response = [response stringByAppendingString:string];
     if( recordResults )
     {
