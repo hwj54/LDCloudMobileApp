@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D017D771BF97F7E00C79638 /* WorkOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D017D761BF97F7E00C79638 /* WorkOrderViewController.m */; };
+		1D017D7A1BF984EA00C79638 /* MyReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D017D791BF984EA00C79638 /* MyReport.m */; };
 		1D02BC601BF4589E004B3A49 /* workerA.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D02BC5C1BF4589E004B3A49 /* workerA.png */; };
 		1D02BC611BF4589E004B3A49 /* workerB.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D02BC5D1BF4589E004B3A49 /* workerB.png */; };
 		1D02BC621BF4589E004B3A49 /* workerC.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D02BC5E1BF4589E004B3A49 /* workerC.png */; };
@@ -47,6 +49,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D017D751BF97F7E00C79638 /* WorkOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkOrderViewController.h; sourceTree = "<group>"; };
+		1D017D761BF97F7E00C79638 /* WorkOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkOrderViewController.m; sourceTree = "<group>"; };
+		1D017D781BF984EA00C79638 /* MyReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyReport.h; sourceTree = "<group>"; };
+		1D017D791BF984EA00C79638 /* MyReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyReport.m; sourceTree = "<group>"; };
 		1D02BC5C1BF4589E004B3A49 /* workerA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = workerA.png; sourceTree = "<group>"; };
 		1D02BC5D1BF4589E004B3A49 /* workerB.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = workerB.png; sourceTree = "<group>"; };
 		1D02BC5E1BF4589E004B3A49 /* workerC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = workerC.png; sourceTree = "<group>"; };
@@ -172,6 +178,10 @@
 				1D48863E1BF63623004F46A6 /* WorkerTableViewCell.m */,
 				1D4886481BF6379F004F46A6 /* MyRecord.h */,
 				1D4886491BF6379F004F46A6 /* MyRecord.m */,
+				1D017D751BF97F7E00C79638 /* WorkOrderViewController.h */,
+				1D017D761BF97F7E00C79638 /* WorkOrderViewController.m */,
+				1D017D781BF984EA00C79638 /* MyReport.h */,
+				1D017D791BF984EA00C79638 /* MyReport.m */,
 			);
 			path = JobShop;
 			sourceTree = "<group>";
@@ -304,6 +314,8 @@
 				1D4886331BF60A7A004F46A6 /* MyRoom.m in Sources */,
 				1D48863F1BF63623004F46A6 /* WorkerTableViewCell.m in Sources */,
 				1DB2AE541BF42F6E003C4C7F /* main.m in Sources */,
+				1D017D7A1BF984EA00C79638 /* MyReport.m in Sources */,
+				1D017D771BF97F7E00C79638 /* WorkOrderViewController.m in Sources */,
 				1D48863C1BF6360C004F46A6 /* WorkerTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

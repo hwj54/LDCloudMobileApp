@@ -728,6 +728,8 @@
             record.role = [_receivedData objectAtIndex:1];
             record.recordType = [_receivedData objectAtIndex:2];
             record.startTime = [_receivedData objectAtIndex:3];
+            record.endTime = [_receivedData objectAtIndex:4];
+            record.status = [_receivedData objectAtIndex:5];
             [_recordList addObject:record];
             _receivedData = [[NSMutableArray alloc]init];
         }else{

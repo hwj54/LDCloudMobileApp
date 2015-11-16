@@ -9,6 +9,7 @@
 #import "WorkerTableViewController.h"
 #import "MyRecord.h"
 #import "WorkerTableViewCell.h"
+#import "WorkOrderViewController.h"
 
 @interface WorkerTableViewController (){
     NSMutableData *webData;
@@ -23,6 +24,7 @@
     NSInteger *selectIndex;
     NSString *operationMode;
     MyRecord *record;
+    MyRecord *recordItem;
     NSString *wsOption;
     NSString *newClock;
 }
@@ -219,9 +221,11 @@
     if(isSeparator){
         record = [[MyRecord alloc]init];
         record.recordID = [_receivedData objectAtIndex:0];
-        record.role = userAccount.role;
-        record.recordType = [_receivedData objectAtIndex:1];
-        record.startTime = [_receivedData objectAtIndex:2];
+        record.role = [_receivedData objectAtIndex:1];
+        record.recordType = [_receivedData objectAtIndex:2];
+        record.startTime = [_receivedData objectAtIndex:3];
+        record.endTime = [_receivedData objectAtIndex:4];
+        record.status = [_receivedData objectAtIndex:5];
         [_recordList addObject:record];
         _receivedData = [[NSMutableArray alloc]init];
     }else{
@@ -330,7 +334,7 @@
 //TableView Cell 响应选中事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MyRecord *recordItem = _recordList[indexPath.row];
+    recordItem = _recordList[indexPath.row];
     
     //selectIndex = indexPath.row;
     /*
@@ -342,8 +346,14 @@
      [alert addButtonWithTitle:@"报工"];
      [alert show];
      */
-    //[self performSegueWithIdentifier:@"gotoChoiceRole" sender:self];
+    [self performSegueWithIdentifier:@"showWorkOrder" sender:self];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    WorkOrderViewController *target = segue.destinationViewController;
+    [target setValue:recordItem forKey:@"myRecord"];
+}
+
 
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

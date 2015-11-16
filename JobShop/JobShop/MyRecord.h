@@ -13,4 +13,7 @@
 @property(nonatomic)NSString *role;
 @property(nonatomic)NSString *recordType;
 @property(nonatomic)NSString *startTime;
+@property(nonatomic)NSString *endTime;
+@property(nonatomic)NSString *status;
+@property(nonatomic)NSMutableArray *_reportList;
 @end
