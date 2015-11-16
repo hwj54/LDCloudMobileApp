@@ -255,12 +255,15 @@
         // @"用户登录成功！";
         target = @"createRoom";
         [self performSegueWithIdentifier:@"createRoom" sender:self];
+        
         target = @"";
         
     }else{
         //_loginStatus.text = @"用户登录失败！";
     }
 }
+
+
 
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *) namespaceURI qualifiedName:(NSString *)qName

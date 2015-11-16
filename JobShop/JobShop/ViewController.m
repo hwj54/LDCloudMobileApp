@@ -160,23 +160,25 @@
         touchPoint.y < self.Worker_A.frame.origin.y +
         self.Worker_A.frame.size.height )
     {
-        targetRole = @"A";
+        
         if([self.dragObject isEqualToString:@"#1"]){
+            targetRole = @"A";
             int count1 = [self.Worker_A.l1.text intValue];
             count1 += 1;
             self.Worker_A.l1.text=[NSString stringWithFormat:@"%i",count1];
         }
         else if([self.dragObject isEqualToString:@"#2"]){
-            int count2 = [self.Worker_A.l2.text intValue];
-            count2 += 1;
-            self.Worker_A.l2.text=[NSString stringWithFormat:@"%i",count2];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"首道工序不符合，无法下达!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+            [alert show];
         }
         else if([self.dragObject isEqualToString:@"#3"]){
+            targetRole = @"A";
             int count3 = [self.Worker_A.l3.text intValue];
             count3 += 1;
             self.Worker_A.l3.text=[NSString stringWithFormat:@"%i",count3];
         }
         else if([self.dragObject isEqualToString:@"#4"]){
+            targetRole = @"A";
             int count4 = [self.Worker_A.l4.text intValue];
             count4 += 1;
             self.Worker_A.l4.text=[NSString stringWithFormat:@"%i",count4];
@@ -191,28 +193,8 @@
         touchPoint.y < self.Worker_B.frame.origin.y +
         self.Worker_B.frame.size.height )
     {
-        targetRole = @"B";
-        if([self.dragObject isEqualToString:@"#1"]){
-            int count1 = [self.Worker_B.l1.text intValue];
-            count1 += 1;
-            self.Worker_B.l1.text=[NSString stringWithFormat:@"%i",count1];
-        }
-        else if([self.dragObject isEqualToString:@"#2"]){
-            int count2 = [self.Worker_B.l2.text intValue];
-            count2 += 1;
-            self.Worker_B.l2.text=[NSString stringWithFormat:@"%i",count2];
-        }
-        else if([self.dragObject isEqualToString:@"#3"]){
-            int count3 = [self.Worker_B.l3.text intValue];
-            count3 += 1;
-            self.Worker_B.l3.text=[NSString stringWithFormat:@"%i",count3];
-        }
-        else if([self.dragObject isEqualToString:@"#4"]){
-            int count4 = [self.Worker_B.l4.text intValue];
-            count4 += 1;
-            self.Worker_B.l4.text=[NSString stringWithFormat:@"%i",count4];
-        }
-        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"首道工序不符合，无法下达!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+        [alert show];
     }
     
     if (touchPoint.x > self.Worker_C.frame.origin.x &&
@@ -222,28 +204,17 @@
         touchPoint.y < self.Worker_C.frame.origin.y +
         self.Worker_C.frame.size.height )
     {
-        targetRole = @"C";
-        if([self.dragObject isEqualToString:@"#1"]){
-            int count1 = [self.Worker_C.l1.text intValue];
-            count1 += 1;
-            self.Worker_C.l1.text=[NSString stringWithFormat:@"%i",count1];
-        }
-        else if([self.dragObject isEqualToString:@"#2"]){
+        
+        if([self.dragObject isEqualToString:@"#2"]){
+            targetRole = @"C";
             int count2 = [self.Worker_C.l2.text intValue];
             count2 += 1;
             self.Worker_C.l2.text=[NSString stringWithFormat:@"%i",count2];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"首道工序不符合，无法下达!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+            [alert show];
+
         }
-        else if([self.dragObject isEqualToString:@"#3"]){
-            int count3 = [self.Worker_C.l3.text intValue];
-            count3 += 1;
-            self.Worker_C.l3.text=[NSString stringWithFormat:@"%i",count3];
-        }
-        else if([self.dragObject isEqualToString:@"#4"]){
-            int count4 = [self.Worker_C.l4.text intValue];
-            count4 += 1;
-            self.Worker_C.l4.text=[NSString stringWithFormat:@"%i",count4];
-        }
-        
     }
 
     if (touchPoint.x > self.Worker_D.frame.origin.x &&
@@ -253,28 +224,8 @@
         touchPoint.y < self.Worker_D.frame.origin.y +
         self.Worker_D.frame.size.height )
     {
-        targetRole = @"D";
-        if([self.dragObject isEqualToString:@"#1"]){
-            int count1 = [self.Worker_D.l1.text intValue];
-            count1 += 1;
-            self.Worker_D.l1.text=[NSString stringWithFormat:@"%i",count1];
-        }
-        else if([self.dragObject isEqualToString:@"#2"]){
-            int count2 = [self.Worker_D.l2.text intValue];
-            count2 += 1;
-            self.Worker_D.l2.text=[NSString stringWithFormat:@"%i",count2];
-        }
-        else if([self.dragObject isEqualToString:@"#3"]){
-            int count3 = [self.Worker_D.l3.text intValue];
-            count3 += 1;
-            self.Worker_D.l3.text=[NSString stringWithFormat:@"%i",count3];
-        }
-        else if([self.dragObject isEqualToString:@"#4"]){
-            int count4 = [self.Worker_D.l4.text intValue];
-            count4 += 1;
-            self.Worker_D.l4.text=[NSString stringWithFormat:@"%i",count4];
-        }
-        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"首道工序不符合，无法下达!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+        [alert show];
     }
     if([targetRole isEqualToString:@""]){
         //
