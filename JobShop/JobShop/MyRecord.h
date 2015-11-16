@@ -15,5 +15,6 @@
 @property(nonatomic)NSString *startTime;
 @property(nonatomic)NSString *endTime;
 @property(nonatomic)NSString *status;
+@property(nonatomic)NSString *transmitTime;
 @property(nonatomic)NSMutableArray *_reportList;
 @end

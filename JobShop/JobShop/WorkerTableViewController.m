@@ -8,6 +8,7 @@
 
 #import "WorkerTableViewController.h"
 #import "MyRecord.h"
+#import "MyReport.h"
 #import "WorkerTableViewCell.h"
 #import "WorkOrderViewController.h"
 
@@ -18,6 +19,7 @@
     NSString *response ;
     BOOL recordResults;
     NSMutableArray *_recordList;
+    NSMutableArray *_reportList;
     NSMutableArray *_receivedData;
     NSString *clickType;
     NSString *ScheduleID;
@@ -25,6 +27,7 @@
     NSString *operationMode;
     MyRecord *record;
     MyRecord *recordItem;
+    MyReport *report;
     NSString *wsOption;
     NSString *newClock;
 }
@@ -42,6 +45,7 @@
     self.navigationItem.rightBarButtonItems[1].title = myTable.clock;
     _recordList = [[NSMutableArray alloc]init];
     _receivedData = [[NSMutableArray alloc]init];
+    response = [[NSString alloc]init];
     [self callWebService];
 
 }
@@ -155,6 +159,253 @@
     
 }
 
+-(void)reportWebService{
+    wsOption = @"报工";
+    response = @"N";
+    //封装soap请求消息
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                             "<S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<SOAP-ENV:Header/>\n"
+                             "<S:Body>\n"
+                             "<ns2:updateRecordReport xmlns:ns2=\"http://service.enterpriseApp.ld.org/\">\n"
+                             "<id>"];
+    soapMessage = [soapMessage stringByAppendingString:recordItem.recordID];
+    soapMessage = [soapMessage stringByAppendingString:@"</id>\n"];
+    
+    soapMessage = [soapMessage stringByAppendingString:@"<reportTime>"];
+    soapMessage = [soapMessage stringByAppendingString:myTable.clock];
+    soapMessage = [soapMessage stringByAppendingString:@"</reportTime>\n"];
+    
+    soapMessage = [soapMessage stringByAppendingString:@"</ns2:updateRecordReport>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Body>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Envelope>"];
+    NSLog(@"%@",soapMessage);
+    //请求发送到的路径
+    NSURL *url = [NSURL URLWithString:@"http://120.27.51.181:8080/LDJEEWebEnterpriseApp-war/JobShop?WSDL"];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
+    
+    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
+    [theRequest addValue: @"text/xml; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"http://service.enterpriseApp.ld.org/updateRecordReport"
+      forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //请求
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    //如果连接已经建好，则初始化data
+    if( theConnection )
+    {
+        webData = [[NSMutableData data]init];
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+    }
+    
+}
+
+-(void)transmitWebService{
+    wsOption = @"传递";
+    response = @"N";
+    //封装soap请求消息
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                             "<S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<SOAP-ENV:Header/>\n"
+                             "<S:Body>\n"
+                             "<ns2:transmitRecord xmlns:ns2=\"http://service.enterpriseApp.ld.org/\">\n"
+                             "<id>"];
+    soapMessage = [soapMessage stringByAppendingString:recordItem.recordID];
+    soapMessage = [soapMessage stringByAppendingString:@"</id>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"<transmitTime>"];
+    soapMessage = [soapMessage stringByAppendingString:myTable.clock];
+    soapMessage = [soapMessage stringByAppendingString:@"</transmitTime>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</ns2:transmitRecord>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Body>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Envelope>"];
+    NSLog(@"%@",soapMessage);
+    //请求发送到的路径
+    NSURL *url = [NSURL URLWithString:@"http://120.27.51.181:8080/LDJEEWebEnterpriseApp-war/JobShop?WSDL"];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
+    
+    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
+    [theRequest addValue: @"text/xml; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"http://service.enterpriseApp.ld.org/transmitRecord"
+      forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //请求
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    //如果连接已经建好，则初始化data
+    if( theConnection )
+    {
+        webData = [[NSMutableData data]init];
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+    }
+
+}
+
+-(void)cancelWebService{
+    wsOption = @"取消";
+    response = @"N";
+    //封装soap请求消息
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                             "<S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<SOAP-ENV:Header/>\n"
+                             "<S:Body>\n"
+                             "<ns2:updateRecordStatus xmlns:ns2=\"http://service.enterpriseApp.ld.org/\">\n"
+                             "<id>"];
+    soapMessage = [soapMessage stringByAppendingString:recordItem.recordID];
+    soapMessage = [soapMessage stringByAppendingString:@"</id>\n"];
+    
+    soapMessage = [soapMessage stringByAppendingString:@"<status>"];
+    soapMessage = [soapMessage stringByAppendingString:@"取消"];
+    soapMessage = [soapMessage stringByAppendingString:@"</status>\n"];
+    
+    soapMessage = [soapMessage stringByAppendingString:@"</ns2:updateRecordStatus>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Body>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Envelope>"];
+    NSLog(@"%@",soapMessage);
+    //请求发送到的路径
+    NSURL *url = [NSURL URLWithString:@"http://120.27.51.181:8080/LDJEEWebEnterpriseApp-war/JobShop?WSDL"];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
+    
+    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
+    [theRequest addValue: @"text/xml; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"http://service.enterpriseApp.ld.org/updateRecordStatus"
+      forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //请求
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    //如果连接已经建好，则初始化data
+    if( theConnection )
+    {
+        webData = [[NSMutableData data]init];
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+    }
+
+}
+
+-(void)recoverWebService{
+    wsOption = @"恢复";
+    response = @"N";
+    //封装soap请求消息
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                             "<S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<SOAP-ENV:Header/>\n"
+                             "<S:Body>\n"
+                             "<ns2:updateRecordStatus xmlns:ns2=\"http://service.enterpriseApp.ld.org/\">\n"
+                             "<id>"];
+    soapMessage = [soapMessage stringByAppendingString:recordItem.recordID];
+    soapMessage = [soapMessage stringByAppendingString:@"</id>\n"];
+    
+    soapMessage = [soapMessage stringByAppendingString:@"<status>"];
+    soapMessage = [soapMessage stringByAppendingString:@"在制"];
+    soapMessage = [soapMessage stringByAppendingString:@"</status>\n"];
+    
+    soapMessage = [soapMessage stringByAppendingString:@"</ns2:updateRecordStatus>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Body>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Envelope>"];
+    NSLog(@"%@",soapMessage);
+    //请求发送到的路径
+    NSURL *url = [NSURL URLWithString:@"http://120.27.51.181:8080/LDJEEWebEnterpriseApp-war/JobShop?WSDL"];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
+    
+    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
+    [theRequest addValue: @"text/xml; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"http://service.enterpriseApp.ld.org/updateRecordStatus"
+      forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //请求
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    //如果连接已经建好，则初始化data
+    if( theConnection )
+    {
+        webData = [[NSMutableData data]init];
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+    }
+    
+}
+
+-(void)finishedWebService{
+    wsOption = @"完结";
+    response = @"N";
+    //封装soap请求消息
+    NSString *soapMessage = [NSString stringWithFormat:
+                             @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                             "<S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">\n"
+                             "<SOAP-ENV:Header/>\n"
+                             "<S:Body>\n"
+                             "<ns2:finishedRecord xmlns:ns2=\"http://service.enterpriseApp.ld.org/\">\n"
+                             "<id>"];
+    soapMessage = [soapMessage stringByAppendingString:recordItem.recordID];
+    soapMessage = [soapMessage stringByAppendingString:@"</id>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"<endTime>"];
+    soapMessage = [soapMessage stringByAppendingString:myTable.clock];
+    soapMessage = [soapMessage stringByAppendingString:@"</endTime>\n"];
+
+    soapMessage = [soapMessage stringByAppendingString:@"</ns2:finishedRecord>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Body>\n"];
+    soapMessage = [soapMessage stringByAppendingString:@"</S:Envelope>"];
+    NSLog(@"%@",soapMessage);
+    //请求发送到的路径
+    NSURL *url = [NSURL URLWithString:@"http://120.27.51.181:8080/LDJEEWebEnterpriseApp-war/JobShop?WSDL"];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMessage length]];
+    
+    //以下对请求信息添加属性前四句是必有的，第五句是soap信息。
+    [theRequest addValue: @"text/xml; charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"http://service.enterpriseApp.ld.org/finishedRecord"
+      forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //请求
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    
+    //如果连接已经建好，则初始化data
+    if( theConnection )
+    {
+        webData = [[NSMutableData data]init];
+    }
+    else
+    {
+        NSLog(@"theConnection is NULL");
+    }
+
+}
+
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     [webData setLength: 0];
@@ -192,7 +443,17 @@
     else if ([wsOption isEqualToString:@"时钟同步"]){
         self.navigationItem.rightBarButtonItems[1].title = myTable.clock;
     }
-    
+    else if([wsOption isEqualToString:@"报工"] || [wsOption isEqualToString:@"完结"] ||
+            [wsOption isEqualToString:@"传递"] || [wsOption isEqualToString:@"作废"] ||
+            [wsOption isEqualToString:@"恢复"]){
+        if([response isEqualToString:@"Y"]){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"操作成功!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+            [alert show];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"操作失败!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+            [alert show];
+        }
+    }
 }
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *) namespaceURI qualifiedName:(NSString *)qName
@@ -216,31 +477,37 @@
     //NSLog(@"recordResults:%@",string);
     if([wsOption isEqualToString:@"时钟同步"]){
         myTable.clock = string;
-    }else if([wsOption isEqualToString:@"同步"]){
-    BOOL isSeparator = [@"|" isEqualToString:string];
-    if(isSeparator){
-        record = [[MyRecord alloc]init];
-        record.recordID = [_receivedData objectAtIndex:0];
-        record.role = [_receivedData objectAtIndex:1];
-        record.recordType = [_receivedData objectAtIndex:2];
-        record.startTime = [_receivedData objectAtIndex:3];
-        record.endTime = [_receivedData objectAtIndex:4];
-        record.status = [_receivedData objectAtIndex:5];
-        [_recordList addObject:record];
-        _receivedData = [[NSMutableArray alloc]init];
-    }else{
-        [_receivedData addObject:string];
-        /*
-         if([operationMode isEqualToString:@"取消"] || [operationMode isEqualToString:@"关闭"]){
-         if([string isEqualToString:@"Y"]){
-         //NSLog(@"recordResults:%@",string);
-         [_roomList removeObjectAtIndex:selectIndex];
-         }
-         }
-         */
     }
+    else if([wsOption isEqualToString:@"同步"]){
+        BOOL isSeparator = [@"|" isEqualToString:string];
+        if(isSeparator){
+            record = [[MyRecord alloc]init];
+            record.recordID = [_receivedData objectAtIndex:0];
+            record.role = [_receivedData objectAtIndex:1];
+            record.recordType = [_receivedData objectAtIndex:2];
+            record.startTime = [_receivedData objectAtIndex:3];
+            record.endTime = [_receivedData objectAtIndex:4];
+            record.status = [_receivedData objectAtIndex:5];
+            record.transmitTime = [_receivedData objectAtIndex:6];
+            [_recordList addObject:record];
+            _receivedData = [[NSMutableArray alloc]init];
+        }else{
+            [_receivedData addObject:string];
+            /*
+             if([operationMode isEqualToString:@"取消"] || [operationMode isEqualToString:@"关闭"]){
+             if([string isEqualToString:@"Y"]){
+             //NSLog(@"recordResults:%@",string);
+             [_roomList removeObjectAtIndex:selectIndex];
+             }
+             }
+             */
+        }
     }
-    
+    else if ([wsOption isEqualToString:@"报工"] || [wsOption isEqualToString:@"完结"] ||[wsOption isEqualToString:@"传递"] || [wsOption isEqualToString:@"作废"] ||
+             [wsOption isEqualToString:@"恢复"]){
+        response = string;
+        NSLog([@"*******webservice's response is " stringByAppendingString:response]);
+    }
     //response = [response stringByAppendingString:string];
     if( recordResults )
     {
@@ -259,8 +526,11 @@
         NSLog(@"***************");
     }
     
-    if( [elementName isEqualToString:@"ns2:GetRecordResponse"] ||
-       [elementName isEqualToString:@"ns2:updateTaskStateResponse"] )//
+    if( [elementName isEqualToString:@"ns2:transmitRecordResponse"] ||
+       [elementName isEqualToString:@"ns2:updateRecordReportResponse"] ||
+       [elementName isEqualToString:@"ns2:GetRecordResponse"] ||
+       [elementName isEqualToString:@"ns2:finishedRecordResponse"] ||
+       [elementName isEqualToString:@"ns2:updateRecordStatusResponse"])//
     {
         recordResults = FALSE;
         
@@ -303,18 +573,20 @@
      }
      */
     
-    MyRecord *recordItem = _recordList[indexPath.row];
-    
-    cell.label.text = [@"投料日期 " stringByAppendingString: recordItem.startTime];
+    MyRecord *recordsItem = _recordList[indexPath.row];
+    NSString * labelText = recordsItem.startTime;
+    labelText = [labelText stringByAppendingString:@"  状态:"];
+    labelText = [labelText stringByAppendingString:recordsItem.status];
+    cell.label.text = [@"投料日期:" stringByAppendingString: labelText];
     //UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:taskItem.imgurl]]];
     NSString *imageName = [[NSString alloc]init];
-    if([recordItem.recordType isEqualToString:@"#1"]){
+    if([recordsItem.recordType isEqualToString:@"#1"]){
         imageName = @"WorkOrder#1Logo.png";
-    }else if ([recordItem.recordType isEqualToString:@"#2"]){
+    }else if ([recordsItem.recordType isEqualToString:@"#2"]){
         imageName = @"WorkOrder#2Logo.png";
-    }else if ([recordItem.recordType isEqualToString:@"#3"]){
+    }else if ([recordsItem.recordType isEqualToString:@"#3"]){
         imageName = @"WorkOrder#3Logo.png";
-    }else if ([recordItem.recordType isEqualToString:@"#4"]){
+    }else if ([recordsItem.recordType isEqualToString:@"#4"]){
         imageName = @"WorkOrder#4Logo.png";
     }
         UIImage *img = [UIImage imageNamed:imageName];
@@ -335,22 +607,52 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     recordItem = _recordList[indexPath.row];
-    
-    //selectIndex = indexPath.row;
-    /*
-     //ScheduleID = taskItem.title;
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"操作选项" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"操作选项" message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
      // optional - add more buttons:
-     [alert addButtonWithTitle:@"取消关注"];
-     [alert addButtonWithTitle:@"关闭任务"];
+     [alert addButtonWithTitle:@"查看"];
      [alert addButtonWithTitle:@"报工"];
+     [alert addButtonWithTitle:@"传递"];
+     [alert addButtonWithTitle:@"完结"];
+     [alert addButtonWithTitle:@"作废"];
+     [alert addButtonWithTitle:@"恢复"];
      [alert show];
-     */
-    [self performSegueWithIdentifier:@"showWorkOrder" sender:self];
 }
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0){//取消
+        
+    }
+    if (buttonIndex == 1){//查看
+        [self performSegueWithIdentifier:@"showWorkOrder" sender:self];
+    }
+    if (buttonIndex == 2){//报工
+        if([myTable.clock isEqualToString:recordItem.startTime] ||
+           [myTable.clock isEqualToString:record.transmitTime]){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当日投料或传递的工单无法报工!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+            [alert show];
+        }else{
+            [self reportWebService];
+        }
+    }
+    if (buttonIndex == 3){//传递
+        [self transmitWebService];
+    }
+    if (buttonIndex == 4){//完结
+        [self finishedWebService];
+    }
+    if (buttonIndex == 5){//作废
+        [self cancelWebService];
+    }
+    if (buttonIndex == 6){//恢复
+        [self recoverWebService];
+    }
+
+}
+
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     WorkOrderViewController *target = segue.destinationViewController;
+    [target setValue:myTable forKey:@"myTable"];
     [target setValue:recordItem forKey:@"myRecord"];
 }
 

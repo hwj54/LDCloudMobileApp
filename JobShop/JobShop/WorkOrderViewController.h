@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MyRecord.h"
+#import "MyTable.h"
 
 @interface WorkOrderViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *product;
@@ -22,5 +23,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *process3Time;
 @property (strong, nonatomic) IBOutlet UILabel *process4;
 @property (strong, nonatomic) IBOutlet UILabel *process4Time;
+@property(nonatomic)MyTable *myTable;
 @property(nonatomic) MyRecord *myRecord;
 @end
