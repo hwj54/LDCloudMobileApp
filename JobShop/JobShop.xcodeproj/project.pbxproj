@@ -46,6 +46,7 @@
 		1DBB70131BF46DC500208DDB /* WorkOrder#3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DBB700F1BF46DC500208DDB /* WorkOrder#3.png */; };
 		1DBB70141BF46DC500208DDB /* WorkOrder#4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DBB70101BF46DC500208DDB /* WorkOrder#4.png */; };
 		1DBB70171BF48CEF00208DDB /* WorkerUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DBB70161BF48CEF00208DDB /* WorkerUIView.m */; };
+		1DE9C6971BF9D8F000AAC635 /* Clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 1DE9C6961BF9D8F000AAC635 /* Clock.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +109,7 @@
 		1DBB70101BF46DC500208DDB /* WorkOrder#4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WorkOrder#4.png"; sourceTree = "<group>"; };
 		1DBB70151BF48CEF00208DDB /* WorkerUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkerUIView.h; sourceTree = "<group>"; };
 		1DBB70161BF48CEF00208DDB /* WorkerUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkerUIView.m; sourceTree = "<group>"; };
+		1DE9C6961BF9D8F000AAC635 /* Clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clock.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 		1DB2AE521BF42F6E003C4C7F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1DE9C6961BF9D8F000AAC635 /* Clock.png */,
 				1D48864B1BF638B9004F46A6 /* workerALogo.png */,
 				1D4886401BF6374C004F46A6 /* WorkOrder#1Logo.png */,
 				1D4886411BF6374C004F46A6 /* WorkOrder#2Logo.png */,
@@ -269,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DBB70121BF46DC500208DDB /* WorkOrder#2.png in Resources */,
+				1DE9C6971BF9D8F000AAC635 /* Clock.png in Resources */,
 				1D02BC621BF4589E004B3A49 /* workerC.png in Resources */,
 				1D02BC611BF4589E004B3A49 /* workerB.png in Resources */,
 				1D4886471BF6374C004F46A6 /* WorkOrder#4Logo.png in Resources */,

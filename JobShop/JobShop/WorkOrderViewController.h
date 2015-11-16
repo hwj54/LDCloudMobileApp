@@ -13,6 +13,8 @@
 @interface WorkOrderViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *product;
 @property (strong, nonatomic) IBOutlet UILabel *startTime;
+@property (strong, nonatomic) IBOutlet UILabel *recordStatus;
+@property (strong, nonatomic) IBOutlet UILabel *transmitTime;
 @property (strong, nonatomic) IBOutlet UILabel *endTime;
 @property (strong, nonatomic) IBOutlet UILabel *lt;
 @property (strong, nonatomic) IBOutlet UILabel *process1;

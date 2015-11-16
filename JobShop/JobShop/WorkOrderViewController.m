@@ -24,10 +24,12 @@
 @end
 
 @implementation WorkOrderViewController
+@synthesize recordStatus;
 @synthesize product;
 @synthesize startTime;
 @synthesize endTime;
 @synthesize lt;
+@synthesize transmitTime;
 @synthesize process1;
 @synthesize process1Time;
 @synthesize process2;
@@ -52,9 +54,17 @@
     if([myRecord.recordType isEqualToString:@"#4"]){
         self.view.backgroundColor = [UIColor colorWithRed:97/255.0 green:177/255.0 blue:252/255.0 alpha:1];
     }
+    self.recordStatus.text = myRecord.status;
     self.product.text = myRecord.recordType;
     self.startTime.text = myRecord.startTime;
     self.endTime.text = myRecord.endTime;
+    self.transmitTime.text = myRecord.transmitTime;
+    if(![myRecord.endTime isEqualToString:@"0"] && [myRecord.status isEqualToString:@"完结"]){
+        int startT = [myRecord.startTime intValue];
+        int endT = [myRecord.endTime intValue];
+        int lt = endT - startT;
+        self.lt.text = [NSString stringWithFormat:@"%i",lt];
+    }
     [self callWebService];
     // Do any additional setup after loading the view.
 }

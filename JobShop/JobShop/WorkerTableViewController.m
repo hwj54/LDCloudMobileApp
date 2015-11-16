@@ -627,7 +627,7 @@
     }
     if (buttonIndex == 2){//报工
         if([myTable.clock isEqualToString:recordItem.startTime] ||
-           [myTable.clock isEqualToString:record.transmitTime]){
+           [myTable.clock isEqualToString:recordItem.transmitTime]){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当日投料或传递的工单无法报工!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
             [alert show];
         }else{
