@@ -370,12 +370,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="厂长" id="cW9-H0-jus">
                         <rightBarButtonItems>
-                            <barButtonItem title="时钟-" id="1Sr-1S-u14">
+                            <barButtonItem image="minus_circle.png" id="1Sr-1S-u14">
                                 <connections>
                                     <action selector="clockReduce:" destination="BYZ-38-t0r" id="Pdy-HP-tuz"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="时钟+" id="igi-Rf-g2b">
+                            <barButtonItem image="plus_circle.png" id="igi-Rf-g2b">
                                 <connections>
                                     <action selector="clockPlus:" destination="BYZ-38-t0r" id="XyW-1t-0fg"/>
                                 </connections>
@@ -747,24 +747,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="createRoomBtn" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Quf-Q9-6zy">
-                                <rect key="frame" x="122" y="171" width="77" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="choiceRoomBtn" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPj-nz-1nO">
+                                <rect key="frame" x="111" y="250" width="100" height="100"/>
                                 <animations/>
-                                <state key="normal" title="创建教室"/>
-                                <connections>
-                                    <action selector="createRoomBtn:" destination="g5M-li-wSp" eventType="touchUpInside" id="MfT-oU-ukh"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="choiceRoomBtn" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPj-nz-1nO">
-                                <rect key="frame" x="130" y="285" width="61" height="30"/>
-                                <animations/>
-                                <state key="normal" title="选择教室"/>
+                                <state key="normal" image="Circle2.png"/>
                                 <connections>
                                     <action selector="choiceRoomBtn:" destination="g5M-li-wSp" eventType="touchUpInside" id="C61-bk-lDD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="createRoomBtn" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Quf-Q9-6zy">
+                                <rect key="frame" x="75" y="108" width="172" height="100"/>
+                                <animations/>
+                                <state key="normal" image="Circle.png"/>
+                                <connections>
+                                    <action selector="createRoomBtn:" destination="g5M-li-wSp" eventType="touchUpInside" id="MfT-oU-ukh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="JobShop" id="8if-JG-ybO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -957,12 +958,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Circle.png" width="100" height="100"/>
+        <image name="Circle2.png" width="100" height="100"/>
         <image name="WorkOrder#1.png" width="150" height="150"/>
         <image name="WorkOrder#2.png" width="150" height="150"/>
         <image name="WorkOrder#3.png" width="150" height="150"/>
         <image name="WorkOrder#4.png" width="150" height="150"/>
         <image name="boss.png" width="80" height="80"/>
         <image name="classroom.png" width="60" height="60"/>
+        <image name="minus_circle.png" width="25" height="25"/>
+        <image name="plus_circle.png" width="25" height="25"/>
         <image name="table.png" width="60" height="60"/>
         <image name="workerA.png" width="80" height="80"/>
         <image name="workerB.png" width="80" height="80"/>
