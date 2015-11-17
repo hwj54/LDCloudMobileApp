@@ -11,6 +11,7 @@
 		1D11C9671BD2206900923865 /* CCPMScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C9661BD2206900923865 /* CCPMScheduleTableViewController.m */; };
 		1D11C96A1BD2209800923865 /* CCPMScheduleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C9691BD2209800923865 /* CCPMScheduleTableViewCell.m */; };
 		1D11C96D1BD2232000923865 /* ScheduleNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C96C1BD2232000923865 /* ScheduleNode.m */; };
+		1D9868781BFB320D00DF470E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D9868771BFB320D00DF470E /* Images.xcassets */; };
 		1D9D435A1BD6A3B200868D01 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D43591BD6A3B200868D01 /* AudioToolbox.framework */; };
 		1D9D435C1BD6A3BA00868D01 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D435B1BD6A3BA00868D01 /* CFNetwork.framework */; };
 		1D9D435E1BD6A3C600868D01 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D435D1BD6A3C600868D01 /* CoreGraphics.framework */; };
@@ -50,6 +51,7 @@
 		1D11C9691BD2209800923865 /* CCPMScheduleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPMScheduleTableViewCell.m; sourceTree = "<group>"; };
 		1D11C96B1BD2232000923865 /* ScheduleNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleNode.h; sourceTree = "<group>"; };
 		1D11C96C1BD2232000923865 /* ScheduleNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleNode.m; sourceTree = "<group>"; };
+		1D9868771BFB320D00DF470E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1D9D43591BD6A3B200868D01 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1D9D435B1BD6A3BA00868D01 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1D9D435D1BD6A3C600868D01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -176,6 +178,7 @@
 				1D11C9691BD2209800923865 /* CCPMScheduleTableViewCell.m */,
 				1D11C96B1BD2232000923865 /* ScheduleNode.h */,
 				1D11C96C1BD2232000923865 /* ScheduleNode.m */,
+				1D9868771BFB320D00DF470E /* Images.xcassets */,
 			);
 			path = LDCloudMobileApp;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				1DD2F95C1BCFDE1300481311 /* Mate_1.jpg in Resources */,
 				1DE496831BD12652007EC73F /* beep.mp3 in Resources */,
 				1DD2F94E1BCF7C4600481311 /* LaunchScreen.storyboard in Resources */,
+				1D9868781BFB320D00DF470E /* Images.xcassets in Resources */,
 				1DD2F94B1BCF7C4600481311 /* Assets.xcassets in Resources */,
 				1DD2F9491BCF7C4600481311 /* Main.storyboard in Resources */,
 			);
@@ -391,6 +395,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -399,7 +404,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = LDCloudMobileApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = landing.LDCloudMobileApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -411,6 +416,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -419,7 +425,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = LDCloudMobileApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = landing.LDCloudMobileApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
