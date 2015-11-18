@@ -145,7 +145,16 @@
                                     <segue destination="As8-W3-V2S" kind="show" identifier="openCamera" id="a0t-4k-CcJ"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="search" id="Brh-Pg-rLA"/>
+                            <barButtonItem systemItem="search" id="Brh-Pg-rLA">
+                                <connections>
+                                    <action selector="Filter:" destination="46T-wZ-Epn" id="E37-Wz-NaM"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="refresh" id="4cR-lR-4Xm">
+                                <connections>
+                                    <action selector="Refresh:" destination="46T-wZ-Epn" id="eEt-3v-c09"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>

@@ -18,6 +18,7 @@
     NSString *response ;
     BOOL recordResults;
     NSMutableArray *_ccpmTaskList;
+    NSMutableArray *_ccpmTaskListFilter;
     NSMutableArray *_receivedData;
     CCPMTask *task;
     NSString *clickType;
@@ -38,8 +39,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    _ccpmTaskList = [[NSMutableArray alloc]init];
-    _receivedData = [[NSMutableArray alloc]init];
+    
     clickType = @"";
     
     //NSLog(@"**************************接收到的对象**************************");
@@ -86,6 +86,9 @@
     }
 
 -(void)callWebService{
+    _ccpmTaskList = [[NSMutableArray alloc]init];
+    _ccpmTaskListFilter = [[NSMutableArray alloc]init];
+    _receivedData = [[NSMutableArray alloc]init];
     recordResults = NO;
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:
@@ -248,6 +251,7 @@
         task.info = [_receivedData objectAtIndex:2];
         task.imgurl = [_receivedData objectAtIndex:1];
         [_ccpmTaskList addObject:task];
+        [_ccpmTaskListFilter addObject:task];
         _receivedData = [[NSMutableArray alloc]init];
     }else{
         [_receivedData addObject:string];
@@ -355,32 +359,54 @@
     [alert addButtonWithTitle:@"报工"];
     [alert show];
     //[self performSegueWithIdentifier:@"gotoScheduleDetail1" sender:self];
-    
+}
+
+-(void)TableFilter:(NSString *)condition{
+        if(![condition isEqualToString:@""] && _ccpmTaskListFilter.count > 0){
+            _ccpmTaskList.removeAllObjects;
+            for (CCPMTask *object in _ccpmTaskListFilter) {
+                NSRange range = [object.info rangeOfString:condition];
+                if(range.length != 0){
+                    [_ccpmTaskList addObject:object];
+                }
+            }
+            if(_ccpmTaskList.count == 0){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"无匹配内容!" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+                [alert show];
+            }
+            [self.tableView reloadData];
+            }
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0){
-        NSLog(@"Cancel!");
-    }
-    if (buttonIndex == 1){
-        NSLog(@"取消关注!");
-        operationMode = @"取消";
-        [self callUpdateTaskWebService:@"取消"];
-        [self.tableView reloadData];
-    }
-    if (buttonIndex == 2){
-        NSLog(@"关闭任务!");
-        operationMode = @"关闭";
-        [self callUpdateTaskWebService:@"关闭"];
-        [self.tableView reloadData];
-    }
-    if (buttonIndex == 3) {
-        // do stuff
-        //NSLog(@"Yes!");
-        clickType = @"gotoScheduleDetail";
-        [self performSegueWithIdentifier:@"gotoScheduleDetail1" sender:self];
-        clickType = @"";
-        return;
+    if([alertView.title isEqualToString:@"查询"]){
+        UITextField *filterText = [alertView textFieldAtIndex:0];
+        NSString *usertxt = filterText.text;
+        [self TableFilter:usertxt];
+    }else{
+        if (buttonIndex == 0){
+            NSLog(@"Cancel!");
+        }
+        if (buttonIndex == 1){
+            NSLog(@"取消关注!");
+            operationMode = @"取消";
+            [self callUpdateTaskWebService:@"取消"];
+            [self.tableView reloadData];
+        }
+        if (buttonIndex == 2){
+            NSLog(@"关闭任务!");
+            operationMode = @"关闭";
+            [self callUpdateTaskWebService:@"关闭"];
+            [self.tableView reloadData];
+        }
+        if (buttonIndex == 3) {
+            // do stuff
+            //NSLog(@"Yes!");
+            clickType = @"gotoScheduleDetail";
+            [self performSegueWithIdentifier:@"gotoScheduleDetail1" sender:self];
+            clickType = @"";
+            return;
+        }
     }
 }
 
@@ -439,6 +465,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)Refresh:(id)sender {
+    [self callWebService];
+}
+
+- (IBAction)Filter:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"查询" message:@"请输入过滤条件" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+    // optional - add more buttons:
+    [alert addButtonWithTitle:@"确认"];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    UITextField *account = [alert textFieldAtIndex:0];
+    [account setTextAlignment:NSTextAlignmentCenter];
+    [alert show];
+}
+
 
 - (IBAction)OpenCamera:(id)sender {
     clickType = @"openCamera";

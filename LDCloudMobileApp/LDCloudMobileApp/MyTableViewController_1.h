@@ -12,6 +12,8 @@
 
 
 @interface MyTableViewController_1 : UITableViewController<NSXMLParserDelegate>
+- (IBAction)Refresh:(id)sender;
+- (IBAction)Filter:(id)sender;
 - (IBAction)OpenCamera:(id)sender;
 @property (nonatomic,strong) User *user;
 @end
