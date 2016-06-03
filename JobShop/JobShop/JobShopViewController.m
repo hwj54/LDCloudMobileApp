@@ -63,9 +63,11 @@
     [alert show];
 }
 
+//alterView
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0){
         //NSLog(alertView.title);
+        
     }
     if (buttonIndex == 1){
         //NSLog(alertView.title);
