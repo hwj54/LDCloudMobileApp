@@ -222,7 +222,7 @@
     cell.ScheduleNode.text = nodeText;
     
     if([nodeItem.NodeState isEqualToString:@"Y"]){
-        cell.ScheduleNode.backgroundColor = [UIColor greenColor];
+        cell.ScheduleNode.backgroundColor = [UIColor colorWithRed:169/255.0 green:226/255.0 blue:252/255.0 alpha:1];
         //cell.ScheduleNode.enabled = NO;
         
     }else{

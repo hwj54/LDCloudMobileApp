@@ -10,6 +10,7 @@
 
 @interface MyTableViewCell_1 : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *title;
-@property (strong, nonatomic) IBOutlet UITextView *info;
+@property (strong, nonatomic) IBOutlet UILabel *info;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@end
+@property (strong, nonatomic) IBOutlet UILabel *state;
+@end    

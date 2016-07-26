@@ -13,9 +13,11 @@
 @end
 
 @implementation ProfileSetupViewController
-
+@synthesize user;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //[_newpswd setSecureTextEntry:YES];
+    //[_newpswd_confirm setSecureTextEntry:YES];
     // Do any additional setup after loading the view.
 }
 

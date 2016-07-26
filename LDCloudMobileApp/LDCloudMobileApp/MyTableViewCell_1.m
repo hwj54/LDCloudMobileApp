@@ -12,6 +12,7 @@
 @synthesize title;
 @synthesize info;
 @synthesize imageView;
+@synthesize state;
 - (void)awakeFromNib {
     // Initialization code
 }

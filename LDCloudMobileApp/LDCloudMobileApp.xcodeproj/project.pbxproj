@@ -11,6 +11,7 @@
 		1D11C9671BD2206900923865 /* CCPMScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C9661BD2206900923865 /* CCPMScheduleTableViewController.m */; };
 		1D11C96A1BD2209800923865 /* CCPMScheduleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C9691BD2209800923865 /* CCPMScheduleTableViewCell.m */; };
 		1D11C96D1BD2232000923865 /* ScheduleNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D11C96C1BD2232000923865 /* ScheduleNode.m */; };
+		1D3D60CC1D4749DD003FE3D1 /* ProfileSetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3D60CB1D4749DD003FE3D1 /* ProfileSetupViewController.m */; };
 		1D9868781BFB320D00DF470E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D9868771BFB320D00DF470E /* Images.xcassets */; };
 		1D9D435A1BD6A3B200868D01 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D43591BD6A3B200868D01 /* AudioToolbox.framework */; };
 		1D9D435C1BD6A3BA00868D01 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9D435B1BD6A3BA00868D01 /* CFNetwork.framework */; };
@@ -51,6 +52,8 @@
 		1D11C9691BD2209800923865 /* CCPMScheduleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPMScheduleTableViewCell.m; sourceTree = "<group>"; };
 		1D11C96B1BD2232000923865 /* ScheduleNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleNode.h; sourceTree = "<group>"; };
 		1D11C96C1BD2232000923865 /* ScheduleNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleNode.m; sourceTree = "<group>"; };
+		1D3D60CA1D4749DD003FE3D1 /* ProfileSetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSetupViewController.h; sourceTree = "<group>"; };
+		1D3D60CB1D4749DD003FE3D1 /* ProfileSetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSetupViewController.m; sourceTree = "<group>"; };
 		1D9868771BFB320D00DF470E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1D9D43591BD6A3B200868D01 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		1D9D435B1BD6A3BA00868D01 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -179,6 +182,8 @@
 				1D11C96B1BD2232000923865 /* ScheduleNode.h */,
 				1D11C96C1BD2232000923865 /* ScheduleNode.m */,
 				1D9868771BFB320D00DF470E /* Images.xcassets */,
+				1D3D60CA1D4749DD003FE3D1 /* ProfileSetupViewController.h */,
+				1D3D60CB1D4749DD003FE3D1 /* ProfileSetupViewController.m */,
 			);
 			path = LDCloudMobileApp;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D3D60CC1D4749DD003FE3D1 /* ProfileSetupViewController.m in Sources */,
 				1DD2F95A1BCFAB6B00481311 /* CCPMTask.m in Sources */,
 				1D11C96A1BD2209800923865 /* CCPMScheduleTableViewCell.m in Sources */,
 				1DFCC6C11BD0969400D51C6D /* User.m in Sources */,
