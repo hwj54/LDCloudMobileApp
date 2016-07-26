@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
-@interface ProfileSetupViewController : UIViewController
-
+@interface ProfileSetupViewController : UIViewController<NSXMLParserDelegate>
+@property (strong, nonatomic) IBOutlet UITextField *inputNewPass;
+@property (strong, nonatomic) IBOutlet UITextField *confirmNewPass;
+@property (strong, nonatomic) IBOutlet UILabel *checkNewPass;
+- (IBAction)commit:(id)sender;
 @property (nonatomic,strong) User *user;
 @end
