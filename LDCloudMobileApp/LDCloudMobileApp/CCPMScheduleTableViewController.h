@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface CCPMScheduleTableViewController : UITableViewController<NSXMLParserDelegate>
 @property (nonatomic,strong) NSString *ScheduleID;
+@property (nonatomic,strong) User *user;
+-(void)cleanData;
+-(void)callWebService;
+-(void)returnToMainTableView;
 @end

@@ -9,6 +9,8 @@
 #import "CCPMScheduleTableViewController.h"
 #import "CCPMScheduleTableViewCell.h"
 #import "ScheduleNode.h"
+#import "MyTableViewController_1.h"
+#import "User.h"
 
 @interface CCPMScheduleTableViewController (){
     NSMutableData *webData;
@@ -25,8 +27,10 @@
 
 @implementation CCPMScheduleTableViewController
 @synthesize ScheduleID;
+@synthesize user;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     _ccpmScheduleNodeList = [[NSMutableArray alloc]init];
     _receivedData = [[NSMutableArray alloc]init];
     [self callWebService];
@@ -35,6 +39,21 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)returnToMainTableView{
+    [self performSegueWithIdentifier:@"returnToMainTable" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    MyTableViewController_1 *target = segue.destinationViewController;
+    [target setValue:user forKey:@"user"];
+}
+
+
+-(void)cleanData{
+    _ccpmScheduleNodeList = [[NSMutableArray alloc]init];
+    _receivedData = [[NSMutableArray alloc]init];
 }
 
 -(void)callWebService{
@@ -220,7 +239,7 @@
     [nodeText appendString:@"/"];
     [nodeText appendString:nodeItem.PlanDate];
     cell.ScheduleNode.text = nodeText;
-    
+    cell.tableview = self;
     if([nodeItem.NodeState isEqualToString:@"Y"]){
         cell.ScheduleNode.backgroundColor = [UIColor colorWithRed:169/255.0 green:226/255.0 blue:252/255.0 alpha:1];
         //cell.ScheduleNode.enabled = NO;

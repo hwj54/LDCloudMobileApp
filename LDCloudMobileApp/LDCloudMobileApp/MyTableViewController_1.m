@@ -539,6 +539,7 @@
     if([clickType isEqualToString:@"gotoScheduleDetail"]){
         CCPMScheduleTableViewController *target = segue.destinationViewController;
         [target setValue:ScheduleID forKey:@"ScheduleID"];
+        [target setValue:user forKey:@"user"];
     }else{
         ViewPreviewController *target = segue.destinationViewController;
         [target setValue:user forKey:@"user"];

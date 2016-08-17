@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ScheduleNode.h"
+#import "CCPMScheduleTableViewController.h"
 
 @interface CCPMScheduleTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *ScheduleNode;
 @property (nonatomic,strong) ScheduleNode * node;
 @property (nonatomic,strong) NSString *times;
+@property(nullable) CCPMScheduleTableViewController *tableview;
 
 @end

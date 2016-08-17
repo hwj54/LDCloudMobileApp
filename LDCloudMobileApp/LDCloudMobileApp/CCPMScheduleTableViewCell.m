@@ -44,22 +44,38 @@
             //[alert addButtonWithTitle:@"报工"];
             [alert show];
         }
-    }else if(selected && [_node.NodeState isEqualToString:@"N"]){
+    }
+    else if([_node.Status isEqualToString:@"初始"]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_node.NodeName stringByAppendingString:@"操作选项"] message:@"您确认要修改交期吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"修改交期",nil];
         // optional - add more buttons:
-        //[alert addButtonWithTitle:@"修改交期"];
-        [alert show];    }
-    // Configure the view for the selected state
+        [alert addButtonWithTitle:@"修改交期"];
+        [alert show];
+    }
+    
 }
 
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     NSString *buttonTitle = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:@"继续报工"]){
+        NSLog(@"继续报工!");
+        [_tableview cleanData];
+        [_tableview callWebService];
+        return;
+    }
+    if ([buttonTitle isEqualToString:@"返回"]){
+        NSLog(@"返回!");
+        [_tableview returnToMainTableView];
+
+        return;
+    }
     if ([buttonTitle isEqualToString:@"取消"]){
         NSLog(@"取消!");
+        return;
     }
     if ([buttonTitle isEqualToString:@"确定"]){
         NSLog(@"确定!");
+        return;
     }
     if ([buttonTitle isEqualToString:@"报工"]) {
         // do stuff
@@ -245,7 +261,9 @@
     [xmlParser setShouldResolveExternalEntities: YES];
     [xmlParser parse];
     if([response isEqualToString:@"Y"]){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"操作已完成!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[_node.NodeName stringByAppendingString:@"重新确认交期"] message:@"" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认交期",nil];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"操作已完成!" delegate:self cancelButtonTitle:@"继续报工" otherButtonTitles:@"返回",nil];
         // optional - add more buttons:
         [alert show];
     }else{
