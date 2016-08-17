@@ -192,7 +192,7 @@
     
     if( [elementName isEqualToString:@"ns:return"])
     {
-        NSLog(@"***************");
+        //NSLog(@"***************");
     }
     
     if( [elementName isEqualToString:@"ns2:queryResponse"])
@@ -203,7 +203,7 @@
         //stringByAppendingString:soapResults];
         //[soapResults release];
         
-        NSLog(@"结束！");
+        //NSLog(@"结束！");
         soapResults = nil;
     }
     
