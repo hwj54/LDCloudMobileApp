@@ -21,6 +21,7 @@
     NSMutableArray *_ccpmScheduleNodeList;
     NSMutableArray *_receivedData;
     ScheduleNode *node;
+    NSMutableString *currentElementValue;  //用于存储元素标签的值
 }
 
 @end
@@ -57,6 +58,8 @@
 }
 
 -(void)callWebService{
+    _ccpmScheduleNodeList = [[NSMutableArray alloc]init];
+    _receivedData = [[NSMutableArray alloc]init];
     recordResults = NO;
     //封装soap请求消息
     NSString *soapMessage = [NSString stringWithFormat:
@@ -91,11 +94,12 @@
     //如果连接已经建好，则初始化data
     if( theConnection )
     {
+        response = [[NSString alloc]init];
         webData = [[NSMutableData data]init];
     }
     else
     {
-        NSLog(@"theConnection is NULL");
+        //NSLog(@"theConnection is NULL");
     }
     
 }
@@ -103,19 +107,20 @@
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     [webData setLength: 0];
-    NSLog(@"connection: didReceiveResponse:1");
+    //NSLog(@"connection: didReceiveResponse:1");
 }
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [webData appendData:data];
-    NSLog(@"connection: didReceiveData:%lu", (unsigned long)[webData length]);
+    //NSLog(@"connection: didReceiveData:%lu", (unsigned long)[webData length]);
+
     //NSLog(@"Response:%@",webData);
 }
 
 //如果电脑没有连接网络，则出现此信息（不是网络服务器不通）
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"ERROR with theConenction");
+    //NSLog(@"ERROR with theConenction");
     //[connection release];
     //[webData release];
 }
@@ -145,7 +150,10 @@
    attributes: (NSDictionary *)attributeDict
 {
     //NSLog(@"4 parser didStarElemen: namespaceURI: attributes:");
-    
+    if( [elementName isEqualToString:@"return"])
+    {
+        //NSLog(@"<return>");
+    }
     if( [elementName isEqualToString:@"soap:Fault"])
     {
         if(!soapResults)
@@ -158,41 +166,38 @@
 }
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    //NSLog(@"5 parser: foundCharacters:");
-    //NSLog(@"recordResults:%@",string);
-    BOOL isSeparator = [@"|" isEqualToString:string];
-    if(isSeparator){
-        node = [[ScheduleNode alloc]init];
-        node.NodeCode = [_receivedData objectAtIndex:0];
-        node.NodeName = [_receivedData objectAtIndex:1];
-        node.PlanDate = [_receivedData objectAtIndex:2];
-        node.NodeState = [_receivedData objectAtIndex:4];
-        node.ScheduleID = [_receivedData objectAtIndex:5];
-        node.ProcessNum = [_receivedData objectAtIndex:6];
-        node.Status = [_receivedData objectAtIndex:7];
-        [_ccpmScheduleNodeList addObject:node];
-        _receivedData = [[NSMutableArray alloc]init];
-    }else{
-        [_receivedData addObject:string];
-    }
+    if(!currentElementValue)
+    currentElementValue = [[NSMutableString alloc] initWithString:string];
+    else
+        [currentElementValue appendString:string];
     
-    
-    //response = [response stringByAppendingString:string];
-    if( recordResults )
-    {
-        [soapResults appendString: string];
-    }
 }
 
 
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
-    //NSLog(@"6 parser: didEndElement:");
+    //NSLog(@"didEndElement:%@",elementName);
     
-    if( [elementName isEqualToString:@"ns:return"])
+    if( [elementName isEqualToString:@"return"])
     {
-        //NSLog(@"***************");
+        BOOL isSeparator = [@"|" isEqualToString:currentElementValue];
+        if(!isSeparator){
+            [_receivedData addObject:currentElementValue];
+        }else{
+            node = [[ScheduleNode alloc]init];
+            node.NodeCode = [_receivedData objectAtIndex:0];
+            node.NodeName = [_receivedData objectAtIndex:1];
+            node.PlanDate = [_receivedData objectAtIndex:2];
+            node.NodeState = [_receivedData objectAtIndex:4];
+            node.ScheduleID = ScheduleID;
+            node.ScheduleID = [_receivedData objectAtIndex:5];
+            node.ProcessNum = [_receivedData objectAtIndex:6];
+            node.Status = [_receivedData objectAtIndex:7];
+            [_ccpmScheduleNodeList addObject:node];
+            _receivedData = [[NSMutableArray alloc]init];
+        }
+        currentElementValue = [[NSMutableString alloc]init];
     }
     
     if( [elementName isEqualToString:@"ns2:queryResponse"])
